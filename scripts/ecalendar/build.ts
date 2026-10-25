@@ -46,7 +46,9 @@ const memo = <T>(k: string, f: () => T): T => (cache.has(k) ? (cache.get(k) as T
 const days = (y: number, c = CITY) => memo(`d${y}${c}`, () => read(`data/${y}/${c}/days.json`) as Day[]);
 const fests = (y: number, c = CITY) => memo(`f${y}${c}`, () => read(`data/${y}/${c}/festivals.json`) as Fest[]);
 const moons = (y: number) => memo(`m${y}`, () => read(`data/${y}/${CITY}/moon-phases.json`) as { phase: string; time: string }[]);
-const hols = (y: number) => memo(`h${y}`, () => (read(`data/${y}/holidays.json`) as Hol[]).filter((h) => h.kind !== 'regional' || /Auckland|Wellington|Canterbury|Otago|Waikato|Bay of Plenty|Manawat/.test(h.name)));
+const CITY_REGION: Record<string, string> = { auckland: 'auckland', hamilton: 'auckland', tauranga: 'auckland', wellington: 'wellington', 'palmerston-north': 'wellington', christchurch: 'canterbury', dunedin: 'otago' };
+/** NZ public holidays, school holidays, and only this city's regional anniversary day. */
+const hols = (y: number) => memo(`h${y}`, () => (read(`data/${y}/holidays.json`) as (Hol & { region?: string })[]).filter((h) => h.kind !== 'regional' || h.region === CITY_REGION[CITY]));
 
 const pad = (n: number) => String(n).padStart(2, '0');
 const ym = (y: number, m: number) => `${y}-${pad(m)}`;
@@ -109,6 +111,14 @@ function samvat(y: number, m: number) {
   const mid = `${ym(y, m)}-15`;
   const after = mid >= ugadi(y);
   return { vikram: after ? y + 57 : y + 56, shaka: after ? y - 78 : y - 79, kali: after ? y + 3101 : y + 3100 };
+}
+/** New Zealand season (southern hemisphere) for a month. */
+const nzSeason = (m: number): [string, string] => (m >= 3 && m <= 5 ? ['शरद (पतझड़)', 'Autumn'] : m >= 6 && m <= 8 ? ['शीत ऋतु', 'Winter'] : m >= 9 && m <= 11 ? ['वसंत ऋतु', 'Spring'] : ['ग्रीष्म ऋतु', 'Summer']);
+/** "NZDT", "NZST", or the daylight-saving change within the month, read from the calculated sunrise offsets. */
+function tzLabel(md: Day[]) {
+  const z = (d: Day) => (d.sunrise.endsWith('+13:00') ? 'NZDT' : d.sunrise.endsWith('+12:00') ? 'NZST' : d.sunrise.slice(16));
+  const ch = md.find((d, i) => i > 0 && z(d) !== z(md[i - 1]));
+  return ch ? `${z(md[0])} → ${z(ch)} from ${dnum(ch.date)} ${MONTH_EN[Number(ch.date.slice(5, 7)) - 1].slice(0, 3)} (daylight saving ${z(ch) === 'NZDT' ? 'starts' : 'ends'})` : z(md[0]);
 }
 const RITU: Record<string, [string, string]> = {
   Chaitra: ['वसंत', 'Vasant'], Vaishakha: ['वसंत', 'Vasant'], Jyeshtha: ['ग्रीष्म', 'Grishma'], Ashadha: ['ग्रीष्म', 'Grishma'],
@@ -297,7 +307,7 @@ function header(y: number, m: number, md: Day[]) {
     <div class="mon"><div class="h">${MONTH_HI[m - 1]}</div><div class="e">${MONTH_EN[m - 1].toUpperCase()}</div></div>
     <div class="yr">${y}</div>
   </div>
-  <div class="sub"><span class="hi"><b>${masaHi}</b> (अमांत) · ${pur} (पूर्णिमांत)</span><span>${masaEn} · <b>${CITY_NAME[CITY]} edition</b> · times NZ${y && m >= 4 && m <= 9 ? 'ST' : 'DT'}</span></div>`;
+  <div class="sub"><span class="hi"><b>${masaHi}</b> (अमांत) · ${pur} (पूर्णिमांत)</span><span>${masaEn} · <b>${CITY_NAME[CITY]} edition</b> · times ${tzLabel(md)}</span></div>`;
 }
 
 function artSVG(key: string) {
@@ -337,7 +347,7 @@ function art(y: number, m: number) {
 
 function moonPhaseMap(y: number, m: number) {
   const out: Record<number, string> = {};
-  for (const p of moons(y)) if (inMonth(p.time, y, m)) out[dnum(p.time)] = p.phase === 'Full Moon' ? '○' : p.phase === 'New Moon' ? '●' : p.phase === 'First Quarter' ? '◐' : '◑';
+  for (const p of moons(y)) if (inMonth(p.time, y, m)) out[dnum(p.time)] = p.phase === 'Full Moon' ? '○' : p.phase === 'New Moon' ? '●' : p.phase === 'First Quarter' ? '◑' : '◐'; // as seen from the southern hemisphere: waxing Moon lit on the left
   return out;
 }
 
@@ -486,7 +496,7 @@ function front(y: number, m: number) {
           <div><span class="t hi">शक संवत्</span><span class="v">${sv.shaka}</span><span class="s">Shaka Samvat</span></div></div>
         <div class="art">${art(y, m)}</div>
         <div class="sv"><div><span class="t hi">कलियुगाब्द</span><span class="v">${sv.kali}</span><span class="s">Kali Yuga</span></div>
-          <div><span class="t hi">${ayana[0]}</span><span class="v" style="font-size:28px">${ritu[0]} ऋतु</span><span class="s">${ayana[1]} · ${ritu[1]}</span></div></div>
+          <div><span class="t hi">न्यूज़ीलैंड ऋतु</span><span class="v" style="font-size:30px">${nzSeason(m)[0]}</span><span class="s">NZ ${nzSeason(m)[1]} · ${ayana[1]}</span></div></div>
       </div>
       ${g.html}
       ${sunTable(md)}
@@ -594,12 +604,13 @@ function insideCover(months: [number, number][]) {
         <li><b>Big number</b> — the date. Red for Sundays and NZ public holidays.</li>
         <li><b class="hi">शु. / कृ.</b> — Shukla (waxing) or Krishna (waning) paksha and tithi number at sunrise. 15 = Purnima, 30 = Amavasya.</li>
         <li><b>Second line</b> — tithi name and the time it ends, then the nakshatra.</li>
-        <li><b style="color:var(--red)">Red text</b> — festivals and vrat. ○ full moon · ● new moon · ◐ ◑ quarters.</li></ul></div>
+        <li><b style="color:var(--red)">Red text</b> — festivals and vrat. ○ full moon · ● new moon · ◑ first quarter · ◐ last quarter (drawn as the Moon looks from New Zealand).</li></ul></div>
       <div class="card"><h3>Around the page</h3><ul>
-        <li><b>Top</b> — Hindu months (amanta and purnimanta), Vikram and Shaka Samvat, ayana and ritu.</li>
+        <li><b>Top</b> — Hindu months (amanta and purnimanta), Vikram and Shaka Samvat, ayana and the NZ season.</li>
         <li><b>Left</b> — milk and newspaper record, moon and sankranti times, notes.</li>
         <li><b>Right</b> — vrat-tyohar list, rashifal (Sun's transit by Moon sign) and NZ holidays.</li>
-        <li><b>Below the grid</b> — sunrise and sunset for every day.</li>
+        <li><b>Below the grid</b> — sunrise and sunset for every day, in NZ time (NZDT in summer, NZST in winter; the header shows when daylight saving changes).</li>
+        <li><b>Season</b> — the New Zealand season. Indian ritu names follow India's seasons, which are the reverse of ours, so we show the season you actually see outside.</li>
         <li><b>Back of each month</b> — festival guide, Ekadashi parana, times across NZ cities.</li></ul></div>
     </div>
     <div class="card" style="margin-top:20px"><h3>Months in this edition</h3><p>${months.map(([y, m]) => `${MONTH_EN[m - 1]} ${y}`).join(' · ')}</p></div>

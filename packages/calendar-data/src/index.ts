@@ -36,7 +36,7 @@ export interface FestivalRecord {
   reviewedAt?: string;
 }
 
-export interface HolidayRecord { date: string; name: string; kind: 'public' | 'regional' | 'school'; endDate?: string; note?: string; source: string }
+export interface HolidayRecord { date: string; name: string; kind: 'public' | 'regional' | 'school'; endDate?: string; /** Anniversary-day region: auckland | wellington | canterbury | otago */ region?: string; note?: string; source: string }
 export interface MoonPhaseRecord { phase: string; time: string }
 
 export interface CalendarStore {

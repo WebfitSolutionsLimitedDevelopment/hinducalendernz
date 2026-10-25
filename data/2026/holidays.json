@@ -12,16 +12,31 @@
   "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
  },
  {
+  "date": "2026-01-19",
+  "name": "Wellington Anniversary Day",
+  "kind": "regional",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/",
+  "region": "wellington"
+ },
+ {
   "date": "2026-01-26",
   "name": "Auckland Anniversary Day",
   "kind": "regional",
-  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/",
+  "region": "auckland"
  },
  {
   "date": "2026-02-06",
   "name": "Waitangi Day",
   "kind": "public",
   "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2026-03-23",
+  "name": "Otago Anniversary Day",
+  "kind": "regional",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/",
+  "region": "otago"
  },
  {
   "date": "2026-04-03",
@@ -61,10 +76,31 @@
   "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
  },
  {
+  "date": "2026-09-26",
+  "name": "Term 3 school holidays",
+  "kind": "school",
+  "source": "https://www.calculate.co.nz/nz-school-terms.php (compiled from Ministry of Education)",
+  "endDate": "2026-10-11"
+ },
+ {
   "date": "2026-10-26",
   "name": "Labour Day",
   "kind": "public",
   "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2026-11-13",
+  "name": "Canterbury Anniversary Day (Christchurch Show Day)",
+  "kind": "regional",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/",
+  "region": "canterbury"
+ },
+ {
+  "date": "2026-12-19",
+  "name": "Summer school holidays",
+  "kind": "school",
+  "source": "https://www.calculate.co.nz/nz-school-terms.php (compiled from Ministry of Education)",
+  "endDate": "2027-01-27"
  },
  {
   "date": "2026-12-25",

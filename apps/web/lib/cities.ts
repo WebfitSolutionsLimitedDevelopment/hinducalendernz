@@ -33,3 +33,10 @@ export function currentYear(): number {
   const y = Number(todayNZ().slice(0, 4));
   return Math.min(Math.max(y, YEARS[0]), YEARS[YEARS.length - 1]);
 }
+
+/** Which regional anniversary day each city observes (Waikato and Bay of Plenty follow Auckland; Manawatū follows Wellington). */
+export const CITY_REGION: Record<string, string> = {
+  auckland: 'auckland', hamilton: 'auckland', tauranga: 'auckland',
+  wellington: 'wellington', 'palmerston-north': 'wellington', christchurch: 'canterbury', dunedin: 'otago',
+};
+export const holidayApplies = (h: { kind: string; region?: string }, city: string) => h.kind !== 'regional' || h.region === CITY_REGION[city];

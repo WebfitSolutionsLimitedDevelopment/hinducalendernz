@@ -54,19 +54,20 @@ const GRAHA = [
   ['केतु', 'मंगलवार', 'धूसर / चितकबरा', 'लहसुनिया', 'तिल, कंबल, सप्तधान्य', 'ॐ स्रां स्रीं स्रौं सः केतवे नमः', '17,000'],
 ];
 
-const JYOTIRLINGA = [
-  ['सोमनाथ', 'प्रभास पाटन, गुजरात', 'बारह में प्रथम; अरब सागर के तट पर।'],
-  ['मल्लिकार्जुन', 'श्रीशैलम्, आंध्र प्रदेश', 'कृष्णा नदी के पास श्रीशैल पर्वत पर।'],
-  ['महाकालेश्वर', 'उज्जैन, मध्य प्रदेश', 'दक्षिणमुखी ज्योतिर्लिंग; भस्म आरती प्रसिद्ध।'],
-  ['ओंकारेश्वर', 'खंडवा, मध्य प्रदेश', 'नर्मदा नदी के ॐ आकार के द्वीप पर।'],
-  ['केदारनाथ', 'रुद्रप्रयाग, उत्तराखंड', 'हिमालय में; मंदिर वर्ष में लगभग छह माह खुलता है।'],
-  ['भीमाशंकर', 'पुणे, महाराष्ट्र', 'सह्याद्रि पर्वत में, भीमा नदी का उद्गम।'],
-  ['काशी विश्वनाथ', 'वाराणसी, उत्तर प्रदेश', 'गंगा तट पर, काशी के अधिष्ठाता।'],
-  ['त्र्यंबकेश्वर', 'नासिक, महाराष्ट्र', 'गोदावरी नदी के उद्गम के पास।'],
-  ['वैद्यनाथ', 'देवघर, झारखंड', 'श्रावण में काँवड़ यात्रा का प्रमुख स्थान।'],
-  ['नागेश्वर', 'द्वारका, गुजरात', 'द्वारका के पास; नागों के ईश्वर।'],
-  ['रामेश्वरम्', 'रामनाथपुरम्, तमिलनाडु', 'श्रीराम द्वारा स्थापित; चार धाम में एक।'],
-  ['घृष्णेश्वर', 'छत्रपति संभाजीनगर, महाराष्ट्र', 'एलोरा गुफाओं के पास; बारहवाँ ज्योतिर्लिंग।'],
+
+/** Directory seed (supabase/migrations/20261026000100_seed_temples.sql). */
+const NZ_TEMPLES: [string, string, string | null, string][] = [
+  ['Bharatiya Mandir', 'Auckland', 'Sandringham', 'Vishnu, Lakshmi, Hanuman'],
+  ['Shri Ram Mandir', 'Auckland', 'Henderson', 'Lord Rama'],
+  ['BAPS Shri Swaminarayan Mandir', 'Auckland', 'Avondale', 'BAPS Swaminarayan'],
+  ['Shri Shirdi Saibaba Sansthan of New Zealand', 'Auckland', null, 'Shirdi Sai Baba'],
+  ['Sri Balaji Temple', 'Hamilton', 'Frankton', 'Lord Venkateswara; Shiva, Parvati, Ganapathi, Murugan, Hanuman'],
+  ['Wellington Indian Association – Bharat Bhavan and Gita Mandir', 'Wellington', 'Kilbirnie', 'North Indian'],
+  ['Sri Venkateswara Swamy Temple of Wellington', 'Wellington', 'Wainuiomata, Lower Hutt', 'Lord Venkateswara'],
+  ['ISKCON Wellington (Hare Krishna)', 'Wellington', null, 'ISKCON / Vaishnava'],
+  ['BAPS Shri Swaminarayan Mandir Christchurch', 'Christchurch', null, 'BAPS Swaminarayan'],
+  ['ISKCON Christchurch (Hare Krishna)', 'Christchurch', null, 'ISKCON / Vaishnava'],
+  ['Dunedin Hindu Social and Cultural Organisation', 'Dunedin', null, 'Community prayer group'],
 ];
 
 // ---------- calculated helpers ----------
@@ -244,11 +245,15 @@ export function topicFor(key: string, c: Ctx): string | null {
       <li>मंत्र-जप तुलसी, रुद्राक्ष या चंदन की माला से; माला के सुमेरु को पार न करें, वहीं से वापस घुमाएँ।</li>
       </ol>`));
 
-    case '2027-07': return T('द्वादश ज्योतिर्लिंग', 'The twelve Jyotirlingas of Shiva', `
-      <p class="hi">श्रावण मास शिव उपासना का मास है। पुराणों के अनुसार भगवान शिव बारह स्थानों पर ज्योति स्वरूप में विराजमान हैं — इनके दर्शन और नाम-स्मरण का बड़ा महत्व है।</p>
-      <table class="tt hi ref"><tr><th>#</th><th>ज्योतिर्लिंग</th><th>स्थान</th><th>विशेषता</th></tr>
-      ${JYOTIRLINGA.map((j, i) => `<tr><td>${i + 1}</td><td><b>${j[0]}</b></td><td>${j[1]}</td><td>${j[2]}</td></tr>`).join('')}</table>
-      <p class="hi small">सौराष्ट्रे सोमनाथं च श्रीशैले मल्लिकार्जुनम्। उज्जयिन्यां महाकालमोङ्कारममलेश्वरम्॥ — द्वादश ज्योतिर्लिंग स्तोत्र का आरंभ।</p>`);
+    case '2027-07': {
+      const order = ['Auckland', 'Hamilton', 'Tauranga', 'Wellington', 'Palmerston North', 'Christchurch', 'Dunedin'];
+      const ts = NZ_TEMPLES.slice().sort((x, y) => order.indexOf(x[1]) - order.indexOf(y[1]));
+      return T('न्यूज़ीलैंड के मंदिर', 'Hindu temples across New Zealand', `
+      <p class="hi">श्रावण मास शिव उपासना और मंदिर दर्शन का मास है। न्यूज़ीलैंड के प्रमुख शहरों के कुछ मंदिर — समय, पता और उत्सवों की जानकारी के लिए hinducalendar.co.nz/temples देखें या सीधे मंदिर से संपर्क करें।</p>
+      <table class="tt ref"><tr><th>City</th><th>Temple</th><th>Suburb</th><th>Deities / tradition</th></tr>
+      ${ts.map((t) => `<tr><td><b>${t[1]}</b></td><td>${t[0]}</td><td>${t[2] ?? ''}</td><td>${t[3]}</td></tr>`).join('')}</table>
+      <p class="hi small">आपका मंदिर या संस्था सूची में नहीं है? hinducalendar.co.nz/temples पर जोड़ें — हम निःशुल्क सूचीबद्ध करते हैं।</p>`);
+    }
 
     case '2027-08': {
       const f = c.fests(2027);

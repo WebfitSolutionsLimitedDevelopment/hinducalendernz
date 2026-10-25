@@ -1,3 +1,4 @@
+import { holidayApplies } from '@/lib/cities';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
@@ -32,7 +33,7 @@ export default async function MonthPage({ params }: P) {
   const rows = days.filter((d) => d.date.startsWith(prefix)).map((d) => ({
     d,
     fest: festivals.filter((f) => f.date === d.date),
-    hol: holidays.filter((h) => h.kind !== 'school' && h.date === d.date && !(h.kind === 'regional' && city !== 'auckland')),
+    hol: holidays.filter((h) => h.kind !== 'school' && h.date === d.date && holidayApplies(h, city)),
     school: holidays.some((h) => h.kind === 'school' && h.date <= d.date && d.date <= (h.endDate ?? h.date)),
     moon: moons.filter((p) => p.time.startsWith(d.date)),
   }));
