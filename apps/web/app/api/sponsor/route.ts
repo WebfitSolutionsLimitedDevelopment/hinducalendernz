@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { publicDb, rateLimitOk, str, isEmail } from '@/lib/supabase-server';
+import { notifyTeam } from '@/lib/notify';
 
 export async function POST(req: Request) {
   const form = await req.formData();
@@ -16,5 +17,6 @@ export async function POST(req: Request) {
     phone: str(form.get('phone'), 40), interest: str(form.get('interest'), 1000),
   });
   if (error) { console.error('sponsor enquiry failed', error.message); return back('error=save'); }
+  await notifyTeam(`Sponsorship enquiry: ${business}`, { business, email, name: form.get('contact_name'), phone: form.get('phone'), interest: form.get('interest') });
   return back('thanks=1');
 }

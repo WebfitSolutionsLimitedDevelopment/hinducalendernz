@@ -3,7 +3,7 @@ const MSG: Record<string, string> = {
   missing: 'Please fill in the required fields.',
   invalid: 'Please check the website address and email.',
   rate: 'Too many submissions from this connection — please try again in an hour.',
-  closed: 'This form is not open yet — please try again soon.',
+  closed: 'We couldn’t take that just now — please email info@webfitt.co.nz or call 022 129 9323.',
   save: 'Sorry, something went wrong saving that. Please try again.',
 };
 

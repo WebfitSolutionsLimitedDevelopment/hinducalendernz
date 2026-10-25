@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   if (!(await rateLimitOk(req, 'pushtest', 5, 3600))) return NextResponse.json({ ok: false }, { status: 429 });
   const sub = await req.json().catch(() => null);
   if (!sub?.endpoint || !/^https:\/\//.test(sub.endpoint) || !sub.keys?.p256dh || !sub.keys?.auth) return NextResponse.json({ ok: false }, { status: 400 });
-  webpush.setVapidDetails(process.env.VAPID_SUBJECT ?? 'mailto:hello@hinducalendar.co.nz', pub, priv);
+  webpush.setVapidDetails(process.env.VAPID_SUBJECT ?? 'mailto:info@webfitt.co.nz', pub, priv);
   try {
     await webpush.sendNotification(sub, JSON.stringify({ title: 'Hindu Calendar NZ', body: 'Reminders are working. We’ll let you know before your chosen festivals.', url: '/festivals' }), { TTL: 600 });
     return NextResponse.json({ ok: true });

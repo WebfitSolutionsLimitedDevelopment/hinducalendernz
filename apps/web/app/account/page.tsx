@@ -29,7 +29,7 @@ export default function AccountPage() {
     });
   }, [db, user]);
 
-  if (!db) return <article className="prose"><h1>Your account</h1><p className="muted">Accounts are not switched on yet.</p></article>;
+  if (!db) return <article className="prose"><h1>Your account</h1><p className="muted">Sign-in is temporarily unavailable. Please try again later.</p></article>;
   if (user === undefined) return <article className="prose"><h1>Your account</h1><p className="muted">Loading…</p></article>;
 
   if (!user) {
@@ -78,7 +78,7 @@ export default function AccountPage() {
           await db.auth.signOut();
         }}>Delete my data</button>
       </div>
-      <p className="small muted">To remove your sign-in email completely, email <a href="mailto:hello@hinducalendar.co.nz">hello@hinducalendar.co.nz</a>.</p>
+      <p className="small muted">To remove your sign-in email completely, email <a href="mailto:info@webfitt.co.nz">info@webfitt.co.nz</a>.</p>
     </article>
   );
 }

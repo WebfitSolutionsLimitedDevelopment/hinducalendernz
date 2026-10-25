@@ -1,5 +1,6 @@
 import { FormStatus, Honeypot } from '@/components/FormStatus';
 import { CITIES } from '@/lib/cities';
+import { SITE } from '@/lib/site';
 
 export const metadata = { title: 'Corrections and verification' };
 
@@ -12,7 +13,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
       <table className="timing">
         <tbody>
           <tr><th scope="row">Calculated – not yet reviewed</th><td>Worked out for the city from astronomical data and the festival’s traditional rule. Not yet checked by a reviewer.</td></tr>
-          <tr><th scope="row">Reviewed</th><td>Checked by our nominated Panchang reviewer.</td></tr>
+          <tr><th scope="row">Reviewed</th><td>Checked by our editor and reviewer, {SITE.reviewer}.</td></tr>
           <tr><th scope="row">Verified</th><td>Reviewed and approved for publication.</td></tr>
         </tbody>
       </table>
@@ -41,8 +42,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
         <div><label htmlFor="email">Your email (optional, if you’d like a reply)</label><input id="email" name="email" type="email" maxLength={254} /></div>
         <button className="btn btn-primary" type="submit">Send correction</button>
       </form>
+      <h2>Who reviews the calendar</h2>
+      <p>Dates, timings and festival guidance are reviewed by {SITE.reviewer}, founder and editor of Hindu Calendar NZ. Where a question needs specialist knowledge of a particular tradition, we consult priests and practitioners from that tradition.</p>
       <h2>Corrections log</h2>
-      <p className="muted">No corrections yet.</p>
+      <p>Published corrections are listed here with the date of the change. No published dates have been corrected so far.</p>
+      <p className="small muted">Questions? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or call <a href={SITE.phoneHref}>{SITE.phone}</a>.</p>
     </article>
   );
 }

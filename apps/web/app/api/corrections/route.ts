@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { publicDb, rateLimitOk, str, isEmail } from '@/lib/supabase-server';
+import { notifyTeam } from '@/lib/notify';
 
 export async function POST(req: Request) {
   const form = await req.formData();
@@ -15,5 +16,6 @@ export async function POST(req: Request) {
     message, email, city: str(form.get('city'), 60), festival: str(form.get('festival'), 150), expected: str(form.get('expected'), 300),
   });
   if (error) { console.error('correction failed', error.message); return back('error=save'); }
+  await notifyTeam('Correction reported', { city: form.get('city'), festival: form.get('festival'), expected: form.get('expected'), message, email });
   return back('thanks=1');
 }

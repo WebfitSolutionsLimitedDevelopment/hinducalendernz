@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = { title: 'How Hindu dates work in New Zealand' };
 
-// Adapted from the founder's "Purpose and Guide" (Sept 2026). Draft — pending founder approval.
+// Adapted from the founder's "Purpose and Guide" (Sept 2026).
 export default function Page() {
   return (
     <article className="prose">

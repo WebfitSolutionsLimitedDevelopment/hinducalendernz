@@ -20,7 +20,7 @@ export default function Page() {
       <h2>Temple listings and sponsors</h2>
       <p>Directory listings are provided for convenience; check details with each organisation. Sponsors are clearly labelled and have no influence over religious content.</p>
       <h2>Contact</h2>
-      <p><a href="mailto:hello@hinducalendar.co.nz">hello@hinducalendar.co.nz</a></p>
+      <p><a href="mailto:info@webfitt.co.nz">info@webfitt.co.nz</a></p>
     </article>
   );
 }

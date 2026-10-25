@@ -44,7 +44,7 @@ export async function GET(req: Request) {
   if (!db) return NextResponse.json({ ok: false, error: 'SUPABASE_SECRET_KEY not set' }, { status: 503 });
 
   const pub = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY, priv = process.env.VAPID_PRIVATE_KEY;
-  if (pub && priv) webpush.setVapidDetails(process.env.VAPID_SUBJECT ?? 'mailto:hello@hinducalendar.co.nz', pub, priv);
+  if (pub && priv) webpush.setVapidDetails(process.env.VAPID_SUBJECT ?? 'mailto:info@webfitt.co.nz', pub, priv);
   const resendKey = process.env.RESEND_API_KEY, from = process.env.REMINDER_FROM_EMAIL;
   const site = process.env.SITE_URL ?? 'https://hinducalendar.co.nz';
 

@@ -6,6 +6,8 @@ import {
 } from '@/lib/data';
 import { StatusBadge } from '@/components/StatusBadge';
 import { CityPicker } from '@/components/CityPicker';
+import { guidanceFor } from '@/lib/guidance';
+import { SITE } from '@/lib/site';
 
 export const dynamicParams = false;
 export async function generateStaticParams() {
@@ -21,7 +23,7 @@ export async function generateMetadata({ params }: P) {
   const f = await getFestival(Number(year), city, slug);
   return f ? {
     title: `${f.name} ${year} in ${cityName(city)} — date and timing`,
-    description: `${f.name} ${year}: ${fmtDate(f.date, { weekday: true })} in ${cityLabel(city)}. Timing window, basis and tradition notes.`,
+    description: `${f.name} ${year}: ${fmtDate(f.date, { weekday: true })} in ${cityLabel(city)}. ${guidanceFor(f)?.about.split('. ')[0] ?? 'Timing window, basis and tradition notes'}.`,
   } : {};
 }
 
@@ -46,6 +48,7 @@ export default async function FestivalPage({ params }: P) {
   if (!isCity(city) || !isYear(Number(year))) notFound();
   const f = await getFestival(Number(year), city, slug);
   if (!f) notFound();
+  const g = guidanceFor(f);
   const rows = Object.entries(f.timing).filter(([k, v]) => LABELS[k] && v);
   const others = (await Promise.all(CITIES.map(async (c) => ({ c, f: await getFestival(Number(year), c.id, slug) })))).filter((x) => x.f);
 
@@ -54,7 +57,7 @@ export default async function FestivalPage({ params }: P) {
       <p className="small"><Link href={`/festivals/${city}/${year}`}>← All festivals {year}</Link></p>
       <h1>{f.name}</h1>
       {f.altNames.length > 0 && <p className="muted">Also known as {f.altNames.join(', ')}</p>}
-      <p><StatusBadge status={f.status} /></p>
+      <p><StatusBadge status={f.status} />{f.reviewer && <span className="small muted"> · Reviewed by {f.reviewer}</span>}</p>
 
       <h2>{fmtDate(f.date, { weekday: true })}</h2>
       <div className="title-row">
@@ -73,13 +76,19 @@ export default async function FestivalPage({ params }: P) {
         </table>
       )}
 
-      <h3>Basis</h3>
-      <p>{f.basis}</p>
-      <p className="muted small">Tradition: {f.tradition}</p>
-
-      {f.guidance ? (<><h3>About this observance</h3><p>{f.guidance}</p></>) : (
-        <p className="muted">Explanation and observance guidance coming soon.</p>
+      {g && (
+        <>
+          <h3>About {f.name.split(' / ')[0].replace(/ \(.*\)$/, '')}</h3>
+          <p>{f.guidance ?? g.about}</p>
+          <h3>How it is observed</h3>
+          <p>{g.observe}</p>
+          {g.timing && <p className="small"><strong>About the time shown:</strong> {g.timing}</p>}
+        </>
       )}
+
+      <h3>Calendar basis</h3>
+      <p>{f.basis}</p>
+      <p className="muted small">Tradition: {f.tradition}. Customs differ between regions and families — follow your family tradition or temple where it differs.</p>
 
       {others.length > 1 && (
         <>

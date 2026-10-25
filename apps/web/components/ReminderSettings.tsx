@@ -84,7 +84,7 @@ export function DeviceReminders() {
     try {
       const db = browserDb();
       const key = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
-      if (!db || !key) throw new Error('Reminders are not switched on for this site yet.');
+      if (!db || !key) throw new Error('Reminders are unavailable right now — please try again later.');
       const reg = await navigator.serviceWorker.ready;
       let sub = await reg.pushManager.getSubscription();
       if (subscribe && !sub) {

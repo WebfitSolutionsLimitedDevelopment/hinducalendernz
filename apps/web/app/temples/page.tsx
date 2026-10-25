@@ -21,10 +21,10 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
       <h1>Temples and community organisations</h1>
       <p className="lead">Hindu temples, mandirs and community groups around New Zealand.</p>
       <p className="small muted prose">
-        Listings are being confirmed with each temple. If a detail is missing or wrong — or your temple or association isn’t listed —
-        please <a href="#suggest">tell us</a>. Check opening hours and event dates with the temple directly.
+        Please check opening hours, puja times and event dates with the temple directly. If a detail is missing or out of date — or your
+        temple or association isn’t listed — please <a href="#suggest">tell us</a> and we’ll update it.
       </p>
-      {temples.length === 0 && <p className="muted">The directory is being prepared.</p>}
+      {temples.length === 0 && <p>Know a temple or community organisation? <a href="#suggest">Add it to the directory</a>.</p>}
       {cities.map((city) => (
         <section key={city}>
           <h2>{city}</h2>
@@ -40,7 +40,6 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
                   {t.website && t.phone && ' · '}
                   {t.phone && <a href={`tel:${t.phone.replace(/\s/g, '')}`}>{t.phone}</a>}
                 </p>
-                {!t.verified_at && <p className="small muted">Details being confirmed</p>}
               </div>
             ))}
           </div>

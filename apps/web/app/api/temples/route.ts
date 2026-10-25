@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { publicDb, rateLimitOk, str, isEmail, isUrl } from '@/lib/supabase-server';
+import { notifyTeam } from '@/lib/notify';
 
 // Temple suggestions go to a moderation queue (temple_submissions); nothing is published automatically.
 export async function POST(req: Request) {
@@ -19,5 +20,6 @@ export async function POST(req: Request) {
     traditions: str(form.get('traditions'), 200), notes: str(form.get('notes'), 1000),
   });
   if (error) { console.error('temple submission failed', error.message); return back('error=save'); }
+  await notifyTeam(`Temple listing: ${name} (${city})`, { name, city, website, email, address: form.get('address'), phone: form.get('phone'), traditions: form.get('traditions'), notes: form.get('notes'), review: 'Supabase → temple_submissions' });
   return back('thanks=1');
 }

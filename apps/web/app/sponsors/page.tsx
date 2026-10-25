@@ -21,7 +21,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
             </div>
           ))}
         </div>
-      ) : <p className="muted">Our first sponsors are coming soon.</p>}
+      ) : <p>Be one of our <strong>founding sponsors</strong> and reach Hindu families across New Zealand all year round — online, on phones and in print.</p>}
       <h2>Our editorial promise</h2>
       <p>Sponsors are always clearly labelled and kept separate from religious content. A sponsor never decides a festival date, timing, guidance or correction.</p>
       <h2>Sponsorship options</h2>

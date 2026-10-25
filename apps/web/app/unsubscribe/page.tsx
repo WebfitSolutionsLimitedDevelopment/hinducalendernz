@@ -16,7 +16,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
       <h1>Unsubscribe</h1>
       {ok
         ? <p>You’ve been removed from the Hindu Calendar NZ mailing list. You won’t receive further emails.</p>
-        : <p>This unsubscribe link isn’t valid or has expired. Email <a href="mailto:hello@hinducalendar.co.nz">hello@hinducalendar.co.nz</a> and we’ll remove you straight away.</p>}
+        : <p>This unsubscribe link isn’t valid or has expired. Email <a href="mailto:info@webfitt.co.nz">info@webfitt.co.nz</a> and we’ll remove you straight away.</p>}
       <p className="small muted">Festival reminders on your phone are managed on the <a href="/reminders">Reminders</a> page.</p>
     </article>
   );

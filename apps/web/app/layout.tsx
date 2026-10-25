@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { MODE } from '@/lib/data';
 import { RegisterSW } from '@/components/RegisterSW';
+import { SITE } from '@/lib/site';
 
 const rozha = localFont({ src: './fonts/RozhaOne.woff2', variable: '--font-rozha', display: 'swap' });
 const outfit = localFont({
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div>
               <strong>Hindu Calendar NZ</strong><br />
               Festival dates and timings for New Zealand cities.<br />
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={SITE.phoneHref}>{SITE.phone}</a><br />
               © {new Date().getFullYear()} Hindu Calendar NZ
             </div>
             <nav aria-label="Footer" className="footer-links">

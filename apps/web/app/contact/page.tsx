@@ -1,5 +1,6 @@
 import { FormStatus, Honeypot } from '@/components/FormStatus';
 import { CITIES } from '@/lib/cities';
+import { SITE } from '@/lib/site';
 
 export const metadata = { title: 'Join and contact' };
 
@@ -29,7 +30,11 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
       </form>
       <h2>Contact</h2>
       <p>For corrections to a date or time, please use the <a href="/corrections#report">corrections form</a>. For sponsorship, see <a href="/sponsors">Sponsors</a>.</p>
-      <p>General enquiries: <a href="mailto:hello@hinducalendar.co.nz">hello@hinducalendar.co.nz</a></p>
+      <ul>
+        <li>Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+        <li>Phone: <a href={SITE.phoneHref}>{SITE.phone}</a></li>
+      </ul>
+      <p className="small muted">We aim to reply within two working days.</p>
     </article>
   );
 }
