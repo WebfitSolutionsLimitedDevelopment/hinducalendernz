@@ -2,6 +2,7 @@ export * from './constants.ts';
 export * from './astro.ts';
 export * from './panchang.ts';
 export * from './festivals.ts';
+export * from './vichar.ts';
 export { DEFAULT_RULES } from './rules.ts';
 
 import type { Location } from './astro.ts';
