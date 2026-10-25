@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { CITIES, YEARS, isCity, isYear, cityLabel, cityName, getFestivals, fmtDate, monthName } from '@/lib/data';
 import { StatusBadge } from '@/components/StatusBadge';
 import { CityPicker } from '@/components/CityPicker';
+import { AddToCalendar } from '@/components/AddToCalendar';
 
 export const dynamicParams = false;
 export const generateStaticParams = () => CITIES.flatMap((c) => YEARS.map((y) => ({ city: c.id, year: String(y) })));
@@ -43,6 +44,7 @@ export default async function FestivalsPage({ params }: P) {
       </div>
       <p className="muted prose">Observance dates for {cityLabel(city)}. Select a festival for its timing window, basis and tradition notes.</p>
       {festivals.length === 0 && <p>Festival dates will be published here once they have been reviewed. <Link href="/contact">Get notified</Link>.</p>}
+      {festivals.length > 0 && <AddToCalendar city={city} />}
       {major.length > 0 && (
         <section>
           <h2>{GROUPS[0].label}</h2>

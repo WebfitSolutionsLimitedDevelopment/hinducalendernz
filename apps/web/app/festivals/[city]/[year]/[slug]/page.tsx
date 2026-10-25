@@ -8,6 +8,8 @@ import { StatusBadge } from '@/components/StatusBadge';
 import { CityPicker } from '@/components/CityPicker';
 import { guidanceFor } from '@/lib/guidance';
 import { SITE } from '@/lib/site';
+import { googleAddLink } from '@/lib/ics';
+import { Share } from '@/components/Share';
 
 export const dynamicParams = false;
 export async function generateStaticParams() {
@@ -85,6 +87,12 @@ export default async function FestivalPage({ params }: P) {
           {g.timing && <p className="small"><strong>About the time shown:</strong> {g.timing}</p>}
         </>
       )}
+
+      <p className="actions">
+        <a className="btn btn-primary" href={googleAddLink(f, city, process.env.SITE_URL ?? 'https://www.hinducalendar.co.nz')} target="_blank" rel="noopener">Add to Google Calendar</a>
+        <a className="btn btn-ghost" href="/reminders">Remind me</a>
+      </p>
+      <Share url={`${process.env.SITE_URL ?? 'https://www.hinducalendar.co.nz'}/festivals/${city}/${year}/${slug}`} text={`${f.name} ${year} in ${cityName(city)}: ${fmtDate(f.date, { weekday: true })}`} />
 
       <h3>Calendar basis</h3>
       <p>{f.basis}</p>

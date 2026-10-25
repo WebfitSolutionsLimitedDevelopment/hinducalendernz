@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { publicDb, rateLimitOk, str, isEmail } from '@/lib/supabase-server';
-import { notifyTeam } from '@/lib/notify';
+import { publicDb, adminDb, rateLimitOk, str, isEmail } from '@/lib/supabase-server';
+import { notifyTeam, confirmToSender } from '@/lib/notify';
 
 // Launch-list sign-ups → Supabase `signups` (insert-only for the public key; nobody can read via API).
 export async function POST(req: Request) {
@@ -23,6 +23,13 @@ export async function POST(req: Request) {
     console.error('signup insert failed', error.message);
     return back('error=save');
   }
-  if (!error) await notifyTeam('New mailing-list sign-up', { email, city: form.get('city'), print: form.has('interest_print'), reminders: form.has('interest_app') });
+  if (!error) {
+    const name = str(form.get('name'), 120);
+    const { data } = (await adminDb()?.from('signups').select('unsub_token').eq('email', email!).maybeSingle()) ?? { data: null };
+    await Promise.all([
+      notifyTeam('New mailing-list sign-up', { email, name, city: form.get('city'), print: form.has('interest_print'), reminders: form.has('interest_app') }),
+      confirmToSender('signup', email!, { name, unsubToken: (data as { unsub_token?: string } | null)?.unsub_token ?? null }),
+    ]);
+  }
   return back('thanks=1');
 }

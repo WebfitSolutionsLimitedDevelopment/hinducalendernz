@@ -1,9 +1,12 @@
 import { InstallApp } from '@/components/InstallApp';
 import { DeviceReminders } from '@/components/ReminderSettings';
+import { AddToCalendar } from '@/components/AddToCalendar';
+import { preferredCity } from '@/lib/data';
 
 export const metadata = { title: 'Festival reminders and the Hindu Calendar app' };
 
-export default function Page() {
+export default async function Page() {
+  const city = await preferredCity();
   return (
     <article className="prose">
       <h1>Reminders and the app</h1>
@@ -15,6 +18,9 @@ export default function Page() {
       <h2>2. Turn on reminders</h2>
       <p className="small muted">Reminders are sent to this device only. No account needed. For email reminders, <a href="/account">create an account</a>.</p>
       <DeviceReminders />
+
+      <h2>3. Or add festivals to your calendar</h2>
+      <AddToCalendar city={city} />
 
       <h2>What you’ll get</h2>
       <p>A short notification such as <em>“Diwali / Lakshmi Puja is tomorrow, Sun 8 Nov — 8:01 pm to 10:25 pm in Auckland.”</em> Tap it to open the festival page.</p>

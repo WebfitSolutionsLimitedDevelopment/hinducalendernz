@@ -155,3 +155,6 @@ table.timing tr.current td { background: var(--sand); font-weight: 600; }
 .sponsors-h { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
 .sponsors ul { list-style: none; padding: 0; margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; align-items: center; }
 .sponsors a { text-decoration: none; font-weight: 600; }
+
+.add-cal { margin: 20px 0 8px; }
+.share { margin-top: 8px; }
