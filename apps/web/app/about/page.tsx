@@ -16,7 +16,14 @@ export default function Page() {
       <h2>Our story</h2>
       <p className="muted">[Founder story — to be supplied by Sanika Sathe Sain.]</p>
       <h2>Who is behind it</h2>
-      <p>Founded by Sanika Sathe Sain, with technology by Webfit Solutions Limited. <span className="muted">[Wording to be confirmed by both co-founders.]</span></p>
+      <p>Hindu Calendar NZ was founded by Sanika Sathe Sain and is built and run in partnership with Webfit Solutions Limited, a New Zealand technology company.</p>
+      <h2>What’s here</h2>
+      <ul>
+        <li>Festival dates and timings for Auckland, Hamilton, Tauranga, Wellington, Palmerston North, Christchurch and Dunedin.</li>
+        <li>NZ public and school holidays on the same calendar.</li>
+        <li>Reminders on your phone or by email.</li>
+        <li>A directory of Hindu temples and community organisations.</li>
+      </ul>
     </article>
   );
 }

@@ -7,7 +7,7 @@ export default function Page() {
     <article className="prose">
       <h1>How to use this calendar</h1>
       <ol>
-        <li><strong>Check the year and reference city.</strong> Exact times are for Auckland. Outside Auckland, check guidance for your own city where precise timing matters.</li>
+        <li><strong>Choose your city.</strong> Timings are calculated separately for Auckland, Hamilton, Tauranga, Wellington, Palmerston North, Christchurch and Dunedin. If you live elsewhere, pick the nearest city.</li>
         <li><strong>Find the festival or fast</strong> on the month view. Read the tradition label and any alternative date that applies to your household.</li>
         <li><strong>Open the festival page</strong> for its timing window. The tithi shown on each day is the one at sunrise — it does not last until midnight and does not decide every festival on its own.</li>
         <li><strong>Check what the time is for</strong> — starting a puja, fasting, breaking a fast (parana) or waiting for moonrise. These are different and can fall on different dates.</li>
