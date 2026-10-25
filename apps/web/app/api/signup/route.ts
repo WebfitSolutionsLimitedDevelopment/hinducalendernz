@@ -1,24 +1,35 @@
 import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
-// Phase 1: forwards sign-ups to SIGNUP_WEBHOOK_URL (e.g. a form service or Google Apps Script).
-// Phase 2: replace with a database insert (signups table) — the form does not need to change.
+// Launch-list sign-ups → Supabase table `signups` (see supabase/migrations).
+// The secret key is server-only; the table has RLS on with no public policies.
 export async function POST(req: Request) {
   const form = await req.formData();
-  const email = String(form.get('email') ?? '').trim();
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    return NextResponse.json({ ok: false, error: 'Please enter a valid email address.' }, { status: 400 });
+  const back = (q: string) => NextResponse.redirect(new URL(`/contact?${q}`, req.url), 303);
+
+  if (String(form.get('website') ?? '') !== '') return back('thanks=1'); // honeypot: silently drop bots
+
+  const email = String(form.get('email') ?? '').trim().toLowerCase();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || email.length > 254) return back('error=email');
+
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SECRET_KEY;
+  if (!url || !key) return back('error=closed');
+
+  const db = createClient(url, key, { auth: { persistSession: false } });
+  const { error } = await db.from('signups').upsert(
+    {
+      email,
+      name: String(form.get('name') ?? '').trim().slice(0, 120) || null,
+      city: String(form.get('city') ?? '').slice(0, 60) || null,
+      interest_print: form.has('interest_print'),
+      interest_app: form.has('interest_app'),
+    },
+    { onConflict: 'email', ignoreDuplicates: true },
+  );
+  if (error) {
+    console.error('signup insert failed', error.message);
+    return back('error=save');
   }
-  const entry = {
-    email,
-    name: String(form.get('name') ?? '').slice(0, 120),
-    city: String(form.get('city') ?? ''),
-    interestPrint: form.has('interest_print'),
-    interestApp: form.has('interest_app'),
-    createdAt: new Date().toISOString(),
-  };
-  const hook = process.env.SIGNUP_WEBHOOK_URL;
-  if (!hook) return NextResponse.json({ ok: false, error: 'Sign-ups are not open yet.' }, { status: 503 });
-  const r = await fetch(hook, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(entry) });
-  if (!r.ok) return NextResponse.json({ ok: false, error: 'Could not save your sign-up. Please try again.' }, { status: 502 });
-  return NextResponse.redirect(new URL('/contact?thanks=1', req.url), 303);
+  return back('thanks=1');
 }
