@@ -158,3 +158,19 @@ table.timing tr.current td { background: var(--sand); font-weight: 600; }
 
 .add-cal { margin: 20px 0 8px; }
 .share { margin-top: 8px; }
+
+/* install pop-up */
+.install-pop { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50; max-width: 520px; margin: 0 auto;
+  background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 10px 30px rgba(42,26,20,.18);
+  padding: 16px 44px 16px 16px; display: flex; gap: 14px; align-items: flex-start; animation: install-in .25s ease-out; }
+@keyframes install-in { from { transform: translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+.install-icon { border-radius: 12px; flex: none; }
+.install-body { min-width: 0; }
+.install-title { margin: 0 0 4px; font-family: var(--font-display); color: var(--maroon); font-size: 1.2rem; }
+.install-text { margin: 0 0 10px; font-size: .92rem; color: var(--muted); }
+.install-steps { margin: 4px 0 10px; padding-left: 20px; font-size: .92rem; }
+.install-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.install-actions .btn { padding: 10px 16px; }
+.install-close { position: absolute; top: 6px; right: 8px; width: 36px; height: 36px; border: 0; background: transparent; font-size: 24px; line-height: 1; color: var(--muted); cursor: pointer; border-radius: 8px; }
+.install-close:hover { background: var(--sand); }
+@media (prefers-reduced-motion: reduce) { .install-pop { animation: none; } }

@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { MODE } from '@/lib/data';
 import { RegisterSW } from '@/components/RegisterSW';
+import { InstallPrompt } from '@/components/InstallPrompt';
 import { SITE } from '@/lib/site';
 
 const rozha = localFont({ src: './fonts/RozhaOne.woff2', variable: '--font-rozha', display: 'swap' });
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         <RegisterSW />
+        <InstallPrompt />
         <Analytics />
       </body>
     </html>
