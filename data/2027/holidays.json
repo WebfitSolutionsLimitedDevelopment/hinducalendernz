@@ -1,0 +1,142 @@
+[
+ {
+  "date": "2027-01-01",
+  "name": "New Year's Day",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-01-01",
+  "endDate": "2027-01-27",
+  "name": "Summer school holidays",
+  "kind": "school",
+  "note": "Schools choose their opening date between 28 January and 3 February. Individual schools may vary.",
+  "source": "https://www.education.govt.nz/school-terms-and-holidays-dates"
+ },
+ {
+  "date": "2027-01-04",
+  "name": "Day after New Year's Day (observed)",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-02-01",
+  "name": "Auckland Anniversary Day",
+  "kind": "regional",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-02-06",
+  "name": "Waitangi Day",
+  "kind": "public",
+  "note": "Falls on Saturday; observed Monday 8 February",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-02-08",
+  "name": "Waitangi Day (observed)",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-03-26",
+  "name": "Good Friday",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-03-29",
+  "name": "Easter Monday",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-04-10",
+  "endDate": "2027-04-26",
+  "name": "Term 1 school holidays",
+  "kind": "school",
+  "note": "Individual schools may vary.",
+  "source": "https://www.education.govt.nz/school-terms-and-holidays-dates"
+ },
+ {
+  "date": "2027-04-25",
+  "name": "ANZAC Day",
+  "kind": "public",
+  "note": "Falls on Sunday; observed Monday 26 April",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-04-26",
+  "name": "ANZAC Day (observed)",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-06-07",
+  "name": "King's Birthday",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-06-25",
+  "name": "Matariki",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-07-03",
+  "endDate": "2027-07-18",
+  "name": "Term 2 school holidays",
+  "kind": "school",
+  "note": "Individual schools may vary.",
+  "source": "https://www.education.govt.nz/school-terms-and-holidays-dates"
+ },
+ {
+  "date": "2027-09-25",
+  "endDate": "2027-10-10",
+  "name": "Term 3 school holidays",
+  "kind": "school",
+  "note": "Individual schools may vary.",
+  "source": "https://www.education.govt.nz/school-terms-and-holidays-dates"
+ },
+ {
+  "date": "2027-10-25",
+  "name": "Labour Day",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-12-18",
+  "endDate": "2027-12-31",
+  "name": "Summer school holidays",
+  "kind": "school",
+  "note": "Start depends on each school's closing date (no later than 17 December). Individual schools may vary.",
+  "source": "https://www.education.govt.nz/school-terms-and-holidays-dates"
+ },
+ {
+  "date": "2027-12-25",
+  "name": "Christmas Day",
+  "kind": "public",
+  "note": "Observed Monday 27 December",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-12-26",
+  "name": "Boxing Day",
+  "kind": "public",
+  "note": "Observed Tuesday 28 December",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-12-27",
+  "name": "Christmas Day (observed)",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ },
+ {
+  "date": "2027-12-28",
+  "name": "Boxing Day (observed)",
+  "kind": "public",
+  "source": "https://www.govt.nz/browse/work-and-tax/public-holidays-and-work/dates-for-public-holidays-and-anniversary-days/"
+ }
+]

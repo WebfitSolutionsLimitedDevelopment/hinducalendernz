@@ -5,3 +5,5 @@ node_modules
 !.env.example
 private/
 *.log
+next-env.d.ts
+*.tsbuildinfo
