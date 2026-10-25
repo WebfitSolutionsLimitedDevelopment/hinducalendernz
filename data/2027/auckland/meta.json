@@ -1,0 +1,14 @@
+{
+ "generatedAt": "2026-10-25T02:40:15.154Z",
+ "year": 2027,
+ "location": {
+  "id": "auckland",
+  "name": "Auckland, New Zealand",
+  "latitude": -36.8485,
+  "longitude": 174.7633,
+  "elevation": 0,
+  "timeZone": "Pacific/Auckland"
+ },
+ "engine": "@webfit/panchang-engine 0.1.0",
+ "status": "CALCULATED — not reviewed; not for publication as final guidance"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "hindu-calendar",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "generate": "tsx scripts/generate-year.ts --year 2027 --city auckland",
+    "test": "vitest run",
+    "typecheck": "tsc -p packages/panchang-engine && tsc -p packages/calendar-data"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
