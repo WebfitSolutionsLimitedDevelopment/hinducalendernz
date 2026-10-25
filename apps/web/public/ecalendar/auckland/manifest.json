@@ -1,0 +1,182 @@
+{
+ "city": "auckland",
+ "cityName": "Auckland",
+ "from": "2026-10",
+ "to": "2027-12",
+ "width": 1240,
+ "height": 1754,
+ "pdf": "auckland-2026-10-2027-12.pdf",
+ "generatedAt": "2026-10-25T21:57:54.141Z",
+ "pages": [
+  {
+   "src": "/ecalendar/auckland/p00.jpg",
+   "label": "Cover",
+   "kind": "cover"
+  },
+  {
+   "src": "/ecalendar/auckland/p01.jpg",
+   "label": "How to read this calendar",
+   "kind": "intro"
+  },
+  {
+   "src": "/ecalendar/auckland/p02.jpg",
+   "label": "October 2026",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p03.jpg",
+   "label": "October 2026 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p04.jpg",
+   "label": "November 2026",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p05.jpg",
+   "label": "November 2026 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p06.jpg",
+   "label": "December 2026",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p07.jpg",
+   "label": "December 2026 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p08.jpg",
+   "label": "January 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p09.jpg",
+   "label": "January 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p10.jpg",
+   "label": "February 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p11.jpg",
+   "label": "February 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p12.jpg",
+   "label": "March 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p13.jpg",
+   "label": "March 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p14.jpg",
+   "label": "April 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p15.jpg",
+   "label": "April 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p16.jpg",
+   "label": "May 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p17.jpg",
+   "label": "May 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p18.jpg",
+   "label": "June 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p19.jpg",
+   "label": "June 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p20.jpg",
+   "label": "July 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p21.jpg",
+   "label": "July 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p22.jpg",
+   "label": "August 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p23.jpg",
+   "label": "August 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p24.jpg",
+   "label": "September 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p25.jpg",
+   "label": "September 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p26.jpg",
+   "label": "October 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p27.jpg",
+   "label": "October 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p28.jpg",
+   "label": "November 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p29.jpg",
+   "label": "November 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p30.jpg",
+   "label": "December 2027",
+   "kind": "front"
+  },
+  {
+   "src": "/ecalendar/auckland/p31.jpg",
+   "label": "December 2027 — useful information",
+   "kind": "back"
+  },
+  {
+   "src": "/ecalendar/auckland/p32.jpg",
+   "label": "Notes",
+   "kind": "intro"
+  },
+  {
+   "src": "/ecalendar/auckland/p33.jpg",
+   "label": "Back cover",
+   "kind": "cover"
+  }
+ ]
+}

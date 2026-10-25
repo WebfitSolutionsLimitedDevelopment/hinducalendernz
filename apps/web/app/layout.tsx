@@ -40,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="nav" aria-label="Main">
               <Link href="/calendar">Calendar</Link>
               <Link href="/festivals">Festivals</Link>
+              <Link href="/e-calendar">E-Calendar</Link>
               <Link href="/temples">Temples</Link>
               <Link href="/reminders">Reminders</Link>
               <Link href="/account">Account</Link>

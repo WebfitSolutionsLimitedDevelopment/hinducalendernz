@@ -17,8 +17,22 @@ export default function AccountPage() {
   useEffect(() => {
     document.title = 'Your account · Hindu Calendar NZ';
     if (!db) { setUser(null); return; }
-    db.auth.getUser().then(({ data }) => setUser(data.user ?? null));
-    const { data: sub } = db.auth.onAuthStateChange((_e, s) => setUser(s?.user ?? null));
+    db.auth.getUser().then(({ data }) => {
+      setUser(data.user ?? null);
+      // Return to the page that sent the visitor here to sign in (e.g. the e-calendar download).
+      try {
+        const next = new URLSearchParams(location.search).get('next') ?? localStorage.getItem('afterSignIn');
+        if (next && !data.user) localStorage.setItem('afterSignIn', next);
+        if (data.user && next && next.startsWith('/') && !next.startsWith('//')) { localStorage.removeItem('afterSignIn'); location.replace(next); }
+      } catch {}
+    });
+    const { data: sub } = db.auth.onAuthStateChange((_e, s) => {
+      setUser(s?.user ?? null);
+      try {
+        const next = localStorage.getItem('afterSignIn');
+        if (s?.user && next && next.startsWith('/') && !next.startsWith('//')) { localStorage.removeItem('afterSignIn'); location.replace(next); }
+      } catch {}
+    });
     return () => sub.subscription.unsubscribe();
   }, [db]);
 

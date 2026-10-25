@@ -174,3 +174,14 @@ table.timing tr.current td { background: var(--sand); font-weight: 600; }
 .install-close { position: absolute; top: 6px; right: 8px; width: 36px; height: 36px; border: 0; background: transparent; font-size: 24px; line-height: 1; color: var(--muted); cursor: pointer; border-radius: 8px; }
 .install-close:hover { background: var(--sand); }
 @media (prefers-reduced-motion: reduce) { .install-pop { animation: none; } }
+
+/* E-calendar flipbook */
+.flip{margin:18px auto 24px;max-width:1240px}
+.flip-bar{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
+.flip-bar select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid #D9C7A6;background:#fff;min-width:180px}
+.flip-label{text-align:center;font-weight:600;color:#6E1A2A;margin:10px 0 8px;min-height:1.4em}
+.flip-stage{background:radial-gradient(ellipse at center,#F3E6CC 0,#E9D8B6 70%);border-radius:14px;padding:18px 10px;overflow:hidden}
+.flip-stage .stf__parent{margin:0 auto}
+.flip-zoom{text-align:center;margin-top:8px}
+@media (max-width:640px){.flip-stage{padding:8px 0;border-radius:0;margin:0 -16px}}
+.flip-bar .btn{padding:8px 16px}
