@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
 // Launch-list sign-ups → Supabase table `signups` (see supabase/migrations).
-// The secret key is server-only; the table has RLS on with no public policies.
+// Uses the publishable key from server code only (never sent to browsers).
+// RLS allows INSERT only; nobody can read sign-ups through the API.
 export async function POST(req: Request) {
   const form = await req.formData();
   const back = (q: string) => NextResponse.redirect(new URL(`/contact?${q}`, req.url), 303);
@@ -13,11 +14,11 @@ export async function POST(req: Request) {
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || email.length > 254) return back('error=email');
 
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SECRET_KEY;
+  const key = process.env.SUPABASE_PUBLISHABLE_KEY;
   if (!url || !key) return back('error=closed');
 
   const db = createClient(url, key, { auth: { persistSession: false } });
-  const { error } = await db.from('signups').upsert(
+  const { error } = await db.from('signups').insert(
     {
       email,
       name: String(form.get('name') ?? '').trim().slice(0, 120) || null,
@@ -25,9 +26,8 @@ export async function POST(req: Request) {
       interest_print: form.has('interest_print'),
       interest_app: form.has('interest_app'),
     },
-    { onConflict: 'email', ignoreDuplicates: true },
   );
-  if (error) {
+  if (error && error.code !== '23505') { // 23505 = already signed up → treat as success
     console.error('signup insert failed', error.message);
     return back('error=save');
   }
