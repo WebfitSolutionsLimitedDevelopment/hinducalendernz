@@ -55,6 +55,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/how-to-use">How to use</Link> · <Link href="/corrections">Corrections &amp; verification</Link> · <Link href="/privacy">Privacy</Link> · <Link href="/contact">Contact</Link>
             </nav>
           </div>
+          <div className="wrap powered">
+            Powered by{' '}
+            <a href="https://www.webfitt.com" target="_blank" rel="noopener">Webfit Solutions Limited</a>
+          </div>
         </footer>
       </body>
     </html>
