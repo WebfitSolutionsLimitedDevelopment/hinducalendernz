@@ -626,7 +626,7 @@ function backCover() {
     <div style="padding-top:330px"><img src="${LOGO}" style="width:200px;background:#FBF5EA;border-radius:50%;padding:20px;box-shadow:0 0 0 8px #D4952A" alt=""></div>
     <div class="hi" style="font:400 80px Rozha;color:#FFE7A8;margin-top:50px">शुभमस्तु</div>
     <div style="font-size:26px;margin-top:20px;line-height:1.6">Hindu Calendar NZ<br>hinducalendar.co.nz · info@webfitt.co.nz · 022 129 9323</div>
-    <div style="font-size:20px;margin-top:60px;opacity:.85;line-height:1.6;padding:0 160px">Dates and times are calculated for each New Zealand city by the Hindu Calendar NZ panchang engine. Spotted something? Report it at hinducalendar.co.nz/corrections. Calendar layout used with the written permission of Thakur Prasad Calendar. Deity paintings: Raja Ravi Varma and the Ravi Varma Press (c.1890–1930), public domain, via Wikimedia Commons.</div>
+    <div style="font-size:20px;margin-top:60px;opacity:.85;line-height:1.6;padding:0 160px">Dates and times are calculated for each New Zealand city by the Hindu Calendar NZ panchang engine. Spotted something? Report it at hinducalendar.co.nz/corrections.</div>
     <div style="position:absolute;bottom:90px;left:0;right:0;font-size:22px">Powered by <b style="color:#FFE7A8">Webfit Solutions Limited</b> · webfitt.com</div>
     <div class="wm"></div></section>`;
 }
