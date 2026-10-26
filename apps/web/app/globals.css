@@ -185,3 +185,11 @@ table.timing tr.current td { background: var(--sand); font-weight: 600; }
 .flip-zoom{text-align:center;margin-top:8px}
 @media (max-width:640px){.flip-stage{padding:8px 0;border-radius:0;margin:0 -16px}}
 .flip-bar .btn{padding:8px 16px}
+
+/* Sign-in: link sent */
+.sent-card{max-width:520px;margin:8px 0 24px;background:#fff;border:2px solid #3E6B3A;border-radius:14px;padding:24px 24px 18px;box-shadow:0 6px 24px rgba(62,107,58,.12)}
+.sent-card h1{margin:6px 0 8px}
+.sent-icon{width:56px;height:56px;border-radius:50%;background:#E3F1E0;color:#3E6B3A;display:grid;place-items:center;font-size:28px}
+.sent-steps{padding-left:1.2em;margin:10px 0}
+.sent-steps li{margin:4px 0}
+.form-error{background:#FBE3E3;border:1px solid #E7A9A9;color:#8A1C1C;border-radius:8px;padding:10px 12px;font-size:.95rem}

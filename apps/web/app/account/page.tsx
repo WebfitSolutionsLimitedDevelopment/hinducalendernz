@@ -13,6 +13,14 @@ export default function AccountPage() {
   const [profile, setProfile] = useState<Profile>({ ...DEFAULT_PREFS, email_reminders: true });
   const [msg, setMsg] = useState('');
   const [busy, setBusy] = useState(false);
+  const [sentTo, setSentTo] = useState('');
+  const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const t = setTimeout(() => setCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [cooldown]);
 
   useEffect(() => {
     document.title = 'Your account · Hindu Calendar NZ';
@@ -46,20 +54,53 @@ export default function AccountPage() {
   if (!db) return <article className="prose"><h1>Your account</h1><p className="muted">Sign-in is temporarily unavailable. Please try again later.</p></article>;
   if (user === undefined) return <article className="prose"><h1>Your account</h1><p className="muted">Loading…</p></article>;
 
+  const sendLink = async () => {
+    setBusy(true); setMsg('');
+    const { error } = await db.auth.signInWithOtp({ email: email.trim(), options: { emailRedirectTo: `${location.origin}/account` } });
+    setBusy(false);
+    if (error) {
+      setMsg(/rate|seconds|too many/i.test(error.message)
+        ? 'We’ve just sent a link to this address. Please wait a minute before asking for another.'
+        : 'We couldn’t send the link just now. Please check the email address and try again.');
+      return;
+    }
+    setSentTo(email.trim()); setCooldown(60);
+  };
+
+  if (!user && sentTo) {
+    return (
+      <article className="prose">
+        <div className="sent-card" role="status" aria-live="polite">
+          <div className="sent-icon" aria-hidden="true">✉</div>
+          <h1>Check your email</h1>
+          <p>We’ve sent a sign-in link to <strong>{sentTo}</strong>.</p>
+          <ol className="sent-steps">
+            <li>Open the email from <strong>Hindu Calendar NZ</strong>.</li>
+            <li>Tap <strong>Sign in</strong> in the email — this opens the website, already signed in.</li>
+            <li>The link works once and expires in 1 hour.</li>
+          </ol>
+          <p className="small muted">Not there after a minute? Check your Spam or Promotions folder.</p>
+          {msg && <p className="form-error" role="alert">{msg}</p>}
+          <div className="actions">
+            <button className="btn btn-primary" type="button" disabled={busy || cooldown > 0} onClick={sendLink}>
+              {busy ? 'Sending…' : cooldown > 0 ? `Resend link (${cooldown}s)` : 'Resend link'}
+            </button>
+            <button className="btn btn-ghost" type="button" onClick={() => { setSentTo(''); setMsg(''); }}>Use a different email</button>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
   if (!user) {
     return (
       <article className="prose">
         <h1>Sign in</h1>
         <p>Save your city and tradition, and get festival reminders by email. We’ll email you a sign-in link — no password needed.</p>
-        <form className="signup" onSubmit={async (e) => {
-          e.preventDefault(); setBusy(true); setMsg('');
-          const { error } = await db.auth.signInWithOtp({ email: email.trim(), options: { emailRedirectTo: `${location.origin}/account` } });
-          setBusy(false);
-          setMsg(error ? `Could not send the link: ${error.message}` : 'Check your email for a sign-in link (it can take a minute — check spam too).');
-        }}>
+        <form className="signup" onSubmit={(e) => { e.preventDefault(); sendLink(); }}>
           <div><label htmlFor="email">Email</label><input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></div>
-          <button className="btn btn-primary" disabled={busy} type="submit">Email me a sign-in link</button>
-          {msg && <p className="small" role="status">{msg}</p>}
+          <button className="btn btn-primary" disabled={busy} type="submit">{busy ? 'Sending…' : 'Email me a sign-in link'}</button>
+          {msg && <p className="form-error" role="alert">{msg}</p>}
         </form>
         <p className="small muted">Just want reminders on your phone? You don’t need an account — see <a href="/reminders">Reminders</a>.</p>
       </article>
