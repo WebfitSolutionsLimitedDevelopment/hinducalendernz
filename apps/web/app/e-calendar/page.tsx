@@ -28,7 +28,7 @@ export default function ECalendarPage() {
       <div className="prose">
         <p className="small muted">
           Times are for {m.cityName}. For another city, see the <Link href="/calendar">online calendar</Link>, which shows every NZ city.
-          Want your business on a month page? See <Link href="/sponsors">sponsorship</Link>. Calendar layout used with the written permission of Thakur Prasad Calendar.
+          Want your business on a month page? See <Link href="/sponsors">sponsorship</Link>. Calendar layout used with the written permission of Thakur Prasad Calendar. Deity paintings by Raja Ravi Varma and the Ravi Varma Press (public domain, via Wikimedia Commons).
         </p>
       </div>
     </article>

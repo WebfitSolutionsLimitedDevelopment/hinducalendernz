@@ -180,6 +180,12 @@ table.rec td.n{width:28px;color:var(--muted);font-weight:600}
 .sv .v{font:400 38px Rozha;color:var(--red)}
 .sv .s{font:600 11.5px Outfit;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .art{border-radius:10px;overflow:hidden;border:3px solid var(--gold);position:relative}
+.art-photo{position:absolute;inset:0;display:flex;align-items:stretch}
+.art-photo img{height:100%;width:auto;max-width:58%;object-fit:cover;object-position:top;border-right:3px solid var(--gold);box-shadow:4px 0 14px rgba(0,0,0,.35)}
+.art-photo .cap{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10px 10px;color:#fff;gap:6px}
+.art-photo .cap b{font:400 34px/1.05 Rozha;color:#FFE7A8;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+.art-photo .cap .en{font:600 12px Outfit;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.art-photo .cap i{font-style:normal;font-size:12.5px;line-height:1.45;opacity:.95;margin-top:4px}
 .art img.photo{width:100%;height:100%;object-fit:cover}
 .grid{margin-top:10px;display:grid;border:2px solid var(--maroon);border-radius:8px;overflow:hidden;background:#fff}
 .grid .wl{display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;line-height:1.1;border-bottom:1px solid rgba(255,255,255,.4)}
@@ -340,7 +346,13 @@ function artSVG(key: string) {
 function art(y: number, m: number) {
   for (const ext of ['jpg', 'png', 'webp']) {
     const p = join(ROOT, `apps/web/public/ecalendar/art/${ym(y, m)}.${ext}`);
-    if (existsSync(p)) return `<img class="photo" src="file://${p}" alt="">`;
+    if (existsSync(p)) {
+      const d = DEITY[MONTH_DEITY[ym(y, m)] ?? 'Ganesha'];
+      const [l1, l2] = d.shloka.split('\n');
+      return `<div class="art-photo" style="background:radial-gradient(circle at 30% 40%,${d.hue[1]} 0,${d.hue[0]} 55%,#2A0A12 100%)">
+        <img src="file://${p}" alt="${esc(d.en)}">
+        <div class="cap"><b class="hi">${d.hi}</b><span class="en">${esc(d.en)}</span><i class="hi">${esc(l1)}<br>${esc(l2)}</i></div></div>`;
+    }
   }
   return artSVG(MONTH_DEITY[ym(y, m)] ?? 'Ganesha');
 }
@@ -626,7 +638,7 @@ function backCover() {
     <div style="padding-top:330px"><img src="${LOGO}" style="width:200px;background:#FBF5EA;border-radius:50%;padding:20px;box-shadow:0 0 0 8px #D4952A" alt=""></div>
     <div class="hi" style="font:400 80px Rozha;color:#FFE7A8;margin-top:50px">शुभमस्तु</div>
     <div style="font-size:26px;margin-top:20px;line-height:1.6">Hindu Calendar NZ<br>hinducalendar.co.nz · info@webfitt.co.nz · 022 129 9323</div>
-    <div style="font-size:20px;margin-top:60px;opacity:.85;line-height:1.6;padding:0 160px">Dates and times are calculated for each New Zealand city by the Hindu Calendar NZ panchang engine. Spotted something? Report it at hinducalendar.co.nz/corrections. Calendar layout used with the written permission of Thakur Prasad Calendar.</div>
+    <div style="font-size:20px;margin-top:60px;opacity:.85;line-height:1.6;padding:0 160px">Dates and times are calculated for each New Zealand city by the Hindu Calendar NZ panchang engine. Spotted something? Report it at hinducalendar.co.nz/corrections. Calendar layout used with the written permission of Thakur Prasad Calendar. Deity paintings: Raja Ravi Varma and the Ravi Varma Press (c.1890–1930), public domain, via Wikimedia Commons.</div>
     <div style="position:absolute;bottom:90px;left:0;right:0;font-size:22px">Powered by <b style="color:#FFE7A8">Webfit Solutions Limited</b> · webfitt.com</div>
     <div class="wm"></div></section>`;
 }
