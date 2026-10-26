@@ -193,3 +193,13 @@ table.timing tr.current td { background: var(--sand); font-weight: 600; }
 .sent-steps{padding-left:1.2em;margin:10px 0}
 .sent-steps li{margin:4px 0}
 .form-error{background:#FBE3E3;border:1px solid #E7A9A9;color:#8A1C1C;border-radius:8px;padding:10px 12px;font-size:.95rem}
+
+/* E-calendar downloads */
+.dl-card{background:#fff;border:1px solid #E4D6BE;border-radius:14px;padding:16px 18px;margin:12px 0 4px}
+.dl-card > p{margin:0 0 10px}
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.dl-grid > div{border:1px solid #F0E2C8;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;background:#FFFBF2}
+.dl-grid h3{margin:0;font-size:1.05rem}
+.dl-grid p{margin:0}
+.dl-grid select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid #D9C7A6;background:#fff}
+.dl-grid .btn{margin-top:auto}

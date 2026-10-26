@@ -30,7 +30,7 @@ export const MONTH_HI = ['जनवरी', 'फ़रवरी', 'मार्�
 export const MONTH_EN = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 export const WEEK_HI = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
 export const WEEK_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-export const WEEK_COLOURS = ['#C8102E', '#6B4E9B', '#C0392B', '#1F7A3A', '#D4952A', '#2E6DB4', '#3A3A3A'];
+export const WEEK_COLOURS = ['#E3122B', '#7B4FC8', '#EA5A12', '#169B48', '#E89A00', '#1F78DC', '#3B3B3B'];
 
 /** Hindi names for festivals, keyed by festival id (dated ids are matched by their prefix). */
 export const FESTIVAL_HI: Record<string, string> = {

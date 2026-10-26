@@ -21,8 +21,8 @@ export default function ECalendarPage() {
           rashifal, sunrise and sunset, and NZ holidays — all calculated for {m.cityName}. Turn the page to see the back of each month,
           with a festival guide, Ekadashi parana times and puja times across New Zealand cities.
         </p>
-        <p><strong>{ECAL_PRICE_NZD > 0 ? `Full-quality PDF: NZ$${ECAL_PRICE_NZD}.` : 'Free for this edition — introductory offer.'}</strong> Sign in to download the full-quality, print-ready PDF without the preview watermark.</p>
-        <EcalDownload city={m.city} />
+        <p><strong>{ECAL_PRICE_NZD > 0 ? `Full-quality PDF: NZ$${ECAL_PRICE_NZD}.` : 'Free for this edition — introductory offer.'}</strong> Sign in to download the print-ready PDF, or any page as a sharp JPG you can zoom into — without the preview watermark.</p>
+        <EcalDownload city={m.city} pages={m.pages.map((p) => ({ label: p.label, kind: p.kind }))} />
       </div>
       <Flipbook pages={m.pages} width={m.width} height={m.height} />
       <div className="prose">

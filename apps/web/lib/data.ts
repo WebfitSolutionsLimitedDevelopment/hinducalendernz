@@ -16,11 +16,11 @@ export * from './format';
 // CalendarStore can replace JsonFileStore later without touching pages.
 // The data folder sits at the repo root; the working directory differs between build,
 // `next start` and Vercel functions, so look in the likely places.
-const DATA_DIR = [join(process.cwd(), '..', '..', 'data'), join(process.cwd(), 'data'), join(process.cwd(), '..', 'data')]
-  .find((d) => existsSync(join(d, '2027', 'holidays.json'))) ?? join(process.cwd(), '..', '..', 'data');
+const DATA_DIR = [join(/*turbopackIgnore: true*/ process.cwd(), '..', '..', 'data'), join(/*turbopackIgnore: true*/ process.cwd(), 'data'), join(/*turbopackIgnore: true*/ process.cwd(), '..', 'data')]
+  .find((d) => existsSync(join(/*turbopackIgnore: true*/ d, '2027', 'holidays.json'))) ?? join(/*turbopackIgnore: true*/ process.cwd(), '..', '..', 'data');
 const cache = new Map<string, unknown>();
 const store = new JsonFileStore(async (p) => {
-  if (!cache.has(p)) cache.set(p, JSON.parse(await readFile(join(DATA_DIR, p), 'utf8')));
+  if (!cache.has(p)) cache.set(p, JSON.parse(await readFile(join(/*turbopackIgnore: true*/ DATA_DIR, p), 'utf8')));
   return cache.get(p);
 });
 

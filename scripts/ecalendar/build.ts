@@ -135,7 +135,7 @@ const CSS = `
 @font-face{font-family:Rozha;src:url(file://${fontDir}/RozhaLatin.woff2);unicode-range:U+0000-00FF,U+2000-206F}
 @font-face{font-family:Rozha;src:url(file://${fontDir}/RozhaDeva.woff2);unicode-range:U+0900-097F,U+1CD0-1CFF,U+200C-200D,U+20B9,U+25CC,U+A830-A83F,U+A8E0-A8FF}
 @font-face{font-family:Tiro;src:url(file://${fontDir}/TiroDeva.woff2)}
-:root{--maroon:#6E1A2A;--red:#B3122E;--gold:#D4952A;--leaf:#3E6B3A;--cream:#FBF5EA;--ink:#2A1A14;--line:#E2CFA9;--muted:#6B5444}
+:root{--maroon:#8E1B2E;--red:#D0102E;--gold:#F0A500;--leaf:#1E8A3E;--cream:#FFFBF2;--ink:#221410;--line:#F0D9A8;--muted:#5E4636}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#ddd}
 body{font-family:Outfit,Tiro,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -143,10 +143,10 @@ body{font-family:Outfit,Tiro,sans-serif;color:var(--ink);-webkit-print-color-adj
 .page{width:1240px;height:1754px;position:relative;overflow:hidden;background:var(--cream);page-break-after:always;break-after:page}
 .wm{display:none}
 body.watermark .wm{display:block;position:absolute;inset:0;pointer-events:none;z-index:50;
-  background-image:url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='520' height='300'><text x='20' y='170' transform='rotate(-28 260 150)' font-family='Arial' font-size='30' font-weight='700' fill='rgba(110,26,42,0.13)'>hinducalendar.co.nz · PREVIEW</text></svg>`)}")}
+  background-image:url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='520' height='300'><text x='20' y='170' transform='rotate(-28 260 150)' font-family='Arial' font-size='30' font-weight='700' fill='rgba(142,27,46,0.085)'>hinducalendar.co.nz · PREVIEW</text></svg>`)}")}
 body.watermark .wm::after{content:'Preview copy — sign in free at hinducalendar.co.nz to download the full-quality calendar';position:absolute;left:0;right:0;bottom:0;background:rgba(110,26,42,.92);color:#fff;font:600 20px Outfit;text-align:center;padding:9px}
 /* header */
-.hd{height:150px;background:linear-gradient(180deg,#9B1B30,#6E1A2A);color:#fff;display:flex;align-items:center;padding:0 26px;gap:18px;border-bottom:6px solid var(--gold)}
+.hd{height:150px;background:linear-gradient(180deg,#E0262F,#A3142E);color:#fff;display:flex;align-items:center;padding:0 26px;gap:18px;border-bottom:6px solid var(--gold)}
 .hd .logo{width:92px;height:92px;background:var(--cream);border-radius:50%;display:grid;place-items:center;flex:none;box-shadow:0 0 0 4px var(--gold)}
 .hd .logo img{width:74px}
 .hd .brand{flex:none;width:250px;line-height:1.05}
@@ -156,7 +156,7 @@ body.watermark .wm::after{content:'Preview copy — sign in free at hinducalenda
 .hd .mon .h{font:400 72px Rozha;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.25)}
 .hd .mon .e{font:800 26px Outfit;letter-spacing:.35em;color:#FFE7A8;margin-top:4px}
 .hd .yr{flex:none;background:#FFD54A;color:var(--maroon);font:400 66px Rozha;padding:6px 22px 0;border-radius:10px;border:4px solid #fff;line-height:1.15}
-.sub{display:flex;justify-content:space-between;align-items:center;padding:8px 26px;background:#F6E3BE;border-bottom:2px solid var(--gold);font-size:19px;color:var(--maroon)}
+.sub{display:flex;justify-content:space-between;align-items:center;padding:8px 26px;background:#FFE7A6;border-bottom:2px solid var(--gold);font-size:19px;color:var(--maroon)}
 .sub b{font-weight:600}
 .body{display:grid;grid-template-columns:238px 1fr 262px;gap:12px;padding:12px 14px 0;height:1226px}
 .col{display:flex;flex-direction:column;gap:10px;min-height:0}
@@ -180,7 +180,7 @@ table.rec td.n{width:28px;color:var(--muted);font-weight:600}
 .sv .v{font:400 38px Rozha;color:var(--red)}
 .sv .s{font:600 11.5px Outfit;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .art{border-radius:10px;overflow:hidden;border:3px solid var(--gold);position:relative}
-.art img.photo{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.art img.photo{width:100%;height:100%;object-fit:cover;object-position:top;display:block;filter:saturate(1.3) contrast(1.08) brightness(1.06)}
 .grid{margin-top:10px;display:grid;border:2px solid var(--maroon);border-radius:8px;overflow:hidden;background:#fff}
 .grid .wl{display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;line-height:1.1;border-bottom:1px solid rgba(255,255,255,.4)}
 .grid .wl b{font:400 22px Rozha}
@@ -195,7 +195,7 @@ table.rec td.n{width:28px;color:var(--muted);font-weight:600}
 .c .fe{font-size:1em;color:var(--red);font-weight:600;line-height:1.15;margin-top:2px}
 .c .ho{font-size:.86em;color:var(--leaf);font-weight:600;line-height:1.15;margin-top:1px}
 .c.sun .n,.c.hol .n{color:var(--red)}
-.c.fest{background:#FFF4E0}
+.c.fest{background:#FFF0C2}
 .c .mp{position:absolute;right:6px;bottom:4px;font-size:18px}
 table.ss{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;background:#fff;border:2px solid var(--maroon)}
 table.ss td,table.ss th{border:1px solid #E7D6B6;text-align:center;padding:1.5px 0}
@@ -268,7 +268,7 @@ table.ref td.big{font-size:1.1em;font-weight:600;color:var(--red)}
 table.cg td{text-align:center}table.cg td.g{background:#E3F1E0}table.cg td.b{background:#FBE3E3}table.cg td.m{background:#FFF3D6}
 
 .bk{padding:0 0 70px}
-.bk .hd2{height:110px;background:linear-gradient(180deg,#9B1B30,#6E1A2A);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:6px solid var(--gold)}
+.bk .hd2{height:110px;background:linear-gradient(180deg,#E0262F,#A3142E);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:6px solid var(--gold)}
 .bk .hd2 .t{font:400 50px Rozha;color:#FFE7A8}
 .bk .hd2 .s{font:600 20px Outfit;letter-spacing:.12em;text-transform:uppercase}
 .bk .wrap{display:grid;grid-template-columns:1fr 400px;gap:20px;padding:20px 26px 0;height:calc(1754px - 110px - 6px - 70px - 20px)}
@@ -669,51 +669,67 @@ async function main() {
   mkdirSync(outPdfDir, { recursive: true });
 
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
-  const page = await browser.newPage({ viewport: { width: 1240, height: 1754 }, deviceScaleFactor: 1 });
-  await page.goto(`file://${tmp}`, { waitUntil: 'load' });
-  await page.evaluate(() => document.fonts.ready);
-  // Back pages: size the upper (month) section to its content, give the rest to the reference topic.
-  await page.evaluate(() => {
-    document.querySelectorAll<HTMLElement>('section.bk').forEach((sec) => {
-      const up = sec.querySelector<HTMLElement>('.upper'), tp = sec.querySelector<HTMLElement>('.topic');
-      if (!up || !tp) return;
-      up.style.height = 'auto';
-      const kids = [...up.children] as HTMLElement[];
-      kids.forEach((k) => (k.style.height = 'auto'));
-      const natural = Math.max(...kids.map((k) => k.scrollHeight)) + 16;
-      const h = Math.max(330, Math.min(900, natural));
-      up.style.height = h + 'px';
-      kids.forEach((k) => (k.style.height = (h - 16) + 'px'));
-      tp.style.top = (up.offsetTop + h + 14) + 'px';
+  /** Load the document at a given pixel density and run the layout passes (back-page split, auto-fit). */
+  const prepare = async (dsf: number) => {
+    const page = await browser.newPage({ viewport: { width: 1240, height: 1754 }, deviceScaleFactor: dsf });
+    await page.goto(`file://${tmp}`, { waitUntil: 'load' });
+    await page.evaluate(() => document.fonts.ready);
+    // Back pages: size the upper (month) section to its content, give the rest to the reference topic.
+    await page.evaluate(() => {
+      document.querySelectorAll<HTMLElement>('section.bk').forEach((sec) => {
+        const up = sec.querySelector<HTMLElement>('.upper'), tp = sec.querySelector<HTMLElement>('.topic');
+        if (!up || !tp) return;
+        up.style.height = 'auto';
+        const kids = [...up.children] as HTMLElement[];
+        kids.forEach((k) => (k.style.height = 'auto'));
+        const natural = Math.max(...kids.map((k) => k.scrollHeight)) + 16;
+        const h = Math.max(330, Math.min(900, natural));
+        up.style.height = h + 'px';
+        kids.forEach((k) => (k.style.height = (h - 16) + 'px'));
+        tp.style.top = (up.offsetTop + h + 14) + 'px';
+      });
     });
-  });
-  // Shrink text in fixed-size boxes until it fits; report anything that still overflows.
-  const overflow = await page.evaluate(() => {
-    const bad: string[] = [];
-    document.querySelectorAll<HTMLElement>('.fit').forEach((el) => {
-      let fs = parseFloat(getComputedStyle(el).fontSize);
-      while (el.scrollHeight > el.clientHeight + 1 && fs > 8.5) { fs -= 0.25; el.style.fontSize = fs + 'px'; }
-      if (el.scrollHeight > el.clientHeight + 1) bad.push((el.closest('section')?.querySelector('.mon .e, .hd2 .s')?.textContent ?? '?') + ': ' + el.className);
+    // Shrink text in fixed-size boxes until it fits; report anything that still overflows.
+    const overflow = await page.evaluate(() => {
+      const bad: string[] = [];
+      document.querySelectorAll<HTMLElement>('.fit').forEach((el) => {
+        let fs = parseFloat(getComputedStyle(el).fontSize);
+        while (el.scrollHeight > el.clientHeight + 1 && fs > 8.5) { fs -= 0.25; el.style.fontSize = fs + 'px'; }
+        if (el.scrollHeight > el.clientHeight + 1) bad.push((el.closest('section')?.querySelector('.mon .e, .hd2 .s')?.textContent ?? '?') + ': ' + el.className);
+      });
+      return bad;
     });
-    return bad;
-  });
-  if (overflow.length) console.warn('Still overflowing:', overflow);
+    if (overflow.length) console.warn('Still overflowing:', overflow);
+    return page;
+  };
 
-  // Clean PDF (A4, vector) for signed-in download and print.
+  // 1) Clean PDF (A4, vector) for signed-in download and print.
+  const page = await prepare(1);
   const pdfName = `${CITY}-${FROM}-${TO}.pdf`;
   await page.emulateMedia({ media: 'print' });
   await page.pdf({ path: join(outPdfDir, pdfName), format: 'A4', scale: 794 / 1240, margin: { top: 0, right: 0, bottom: 0, left: 0 }, printBackground: true, preferCSSPageSize: false });
   await page.emulateMedia({ media: 'screen' });
 
-  // Watermarked images for the website flipbook.
+  // 2) Watermarked images for the website flipbook (1240 px wide).
   await page.evaluate(() => document.body.classList.add('watermark'));
   const els = await page.$$('section.page');
-  const manifest = { city: CITY, cityName: CITY_NAME[CITY], from: FROM, to: TO, width: 1240, height: 1754, pdf: pdfName, generatedAt: new Date().toISOString(), pages: [] as { src: string; label: string; kind: string }[] };
+  const jpgDir = join(outPdfDir, `${CITY}-jpg`);
+  rmSync(jpgDir, { recursive: true, force: true });
+  mkdirSync(jpgDir, { recursive: true });
+  const manifest = { city: CITY, cityName: CITY_NAME[CITY], from: FROM, to: TO, width: 1240, height: 1754, pdf: pdfName, jpgDir: `${CITY}-jpg`, generatedAt: new Date().toISOString(), pages: [] as { src: string; label: string; kind: string; hd: string }[] };
   for (let i = 0; i < els.length; i++) {
     const file = `p${pad(i)}.jpg`;
-    await els[i].screenshot({ path: join(outImg, file), type: 'jpeg', quality: 80 });
-    manifest.pages.push({ src: `/ecalendar/${CITY}/${file}`, label: pages[i].label, kind: pages[i].kind });
+    await els[i].screenshot({ path: join(outImg, file), type: 'jpeg', quality: 82 });
+    const slug = pages[i].label.replace(/ — useful information/, ' back').replace(/[^A-Za-z0-9]+/g, '-').replace(/-$/, '');
+    manifest.pages.push({ src: `/ecalendar/${CITY}/${file}`, label: pages[i].label, kind: pages[i].kind, hd: `${pad(i)}-${slug}.jpg` });
   }
+  await page.close();
+
+  // 3) Clean high-resolution JPGs (2480 × 3508 = A4 at 300 dpi) for signed-in download.
+  const hd = await prepare(2);
+  const hels = await hd.$$('section.page');
+  for (let i = 0; i < hels.length; i++) await hels[i].screenshot({ path: join(jpgDir, manifest.pages[i].hd), type: 'jpeg', quality: 86 });
+  await hd.close();
   writeFileSync(join(outImg, 'manifest.json'), JSON.stringify(manifest, null, 1));
   await browser.close();
   console.log(`Built ${els.length} pages → public/ecalendar/${CITY}/, private/ecalendar/${pdfName}`);
