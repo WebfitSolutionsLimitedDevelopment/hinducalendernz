@@ -173,20 +173,14 @@ table.rec td.n{width:28px;color:var(--muted);font-weight:600}
 .moons{padding:6px 10px;font-size:15.5px}
 .moons div{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dotted #E2CFA9}
 /* centre */
-.top{display:grid;grid-template-columns:128px 1fr 128px;gap:8px;height:300px}
+.top{display:grid;grid-template-columns:1fr 196px 1fr;gap:8px;height:262px}
 .sv{display:flex;flex-direction:column;gap:8px}
 .sv div{flex:1;border:2px solid var(--gold);border-radius:8px;background:#FFF8E6;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;line-height:1.1}
 .sv .t{font:400 19px Rozha;color:var(--maroon)}
 .sv .v{font:400 38px Rozha;color:var(--red)}
 .sv .s{font:600 11.5px Outfit;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .art{border-radius:10px;overflow:hidden;border:3px solid var(--gold);position:relative}
-.art-photo{position:absolute;inset:0;display:flex;align-items:stretch}
-.art-photo img{height:100%;width:auto;max-width:58%;object-fit:cover;object-position:top;border-right:3px solid var(--gold);box-shadow:4px 0 14px rgba(0,0,0,.35)}
-.art-photo .cap{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10px 10px;color:#fff;gap:6px}
-.art-photo .cap b{font:400 34px/1.05 Rozha;color:#FFE7A8;text-shadow:0 2px 0 rgba(0,0,0,.3)}
-.art-photo .cap .en{font:600 12px Outfit;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
-.art-photo .cap i{font-style:normal;font-size:12.5px;line-height:1.45;opacity:.95;margin-top:4px}
-.art img.photo{width:100%;height:100%;object-fit:cover}
+.art img.photo{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
 .grid{margin-top:10px;display:grid;border:2px solid var(--maroon);border-radius:8px;overflow:hidden;background:#fff}
 .grid .wl{display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;line-height:1.1;border-bottom:1px solid rgba(255,255,255,.4)}
 .grid .wl b{font:400 22px Rozha}
@@ -346,13 +340,7 @@ function artSVG(key: string) {
 function art(y: number, m: number) {
   for (const ext of ['jpg', 'png', 'webp']) {
     const p = join(ROOT, `apps/web/public/ecalendar/art/${ym(y, m)}.${ext}`);
-    if (existsSync(p)) {
-      const d = DEITY[MONTH_DEITY[ym(y, m)] ?? 'Ganesha'];
-      const [l1, l2] = d.shloka.split('\n');
-      return `<div class="art-photo" style="background:radial-gradient(circle at 30% 40%,${d.hue[1]} 0,${d.hue[0]} 55%,#2A0A12 100%)">
-        <img src="file://${p}" alt="${esc(d.en)}">
-        <div class="cap"><b class="hi">${d.hi}</b><span class="en">${esc(d.en)}</span><i class="hi">${esc(l1)}<br>${esc(l2)}</i></div></div>`;
-    }
+    if (existsSync(p)) return `<img class="photo" src="file://${p}" alt="${esc(DEITY[MONTH_DEITY[ym(y, m)] ?? 'Ganesha'].en)}">`;
   }
   return artSVG(MONTH_DEITY[ym(y, m)] ?? 'Ganesha');
 }
@@ -383,7 +371,7 @@ function grid(y: number, m: number, md: Day[], mf: Fest[], mh: Hol[], v: Vichar)
   const n = dim(y, m), w0 = wday(y, m, 1);
   const cols = Math.ceil((w0 + n) / 7);
   const mp = moonPhaseMap(y, m);
-  const rowH = 106;
+  const rowH = 111;
   const cells: string[] = [];
   const at = (r: number, c: number, span = 1) => `grid-row:${r + 1}/span ${span};grid-column:${c + 2}`;
   for (let r = 0; r < 7; r++) {
