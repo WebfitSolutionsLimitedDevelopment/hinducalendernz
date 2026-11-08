@@ -6,7 +6,7 @@ const site = () => process.env.SITE_URL ?? 'https://www.hinducalendar.co.nz';
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 
 /** Simple branded HTML wrapper for outgoing emails. */
-function html(paragraphs: string[], footer: string) {
+export function html(paragraphs: string[], footer: string) {
   const body = paragraphs.map((p) => `<p style="margin:0 0 14px">${p}</p>`).join('');
   return `<!doctype html><html><body style="margin:0;background:#FBF5EA;font-family:Arial,Helvetica,sans-serif;color:#2A1A14">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
@@ -18,7 +18,7 @@ function html(paragraphs: string[], footer: string) {
 }
 
 /** Sends one email via Resend. Does nothing until RESEND_API_KEY and REMINDER_FROM_EMAIL are set. Never throws. */
-export async function sendEmail(opts: { to: string; subject: string; text: string; html?: string; replyTo?: string; headers?: Record<string, string> }) {
+export async function sendEmail(opts: { to: string | string[]; subject: string; text: string; html?: string; replyTo?: string; headers?: Record<string, string>; attachments?: { filename: string; content: string }[] }) {
   const key = process.env.RESEND_API_KEY, from = process.env.REMINDER_FROM_EMAIL;
   if (!key || !from) return false;
   try {
@@ -27,7 +27,7 @@ export async function sendEmail(opts: { to: string; subject: string; text: strin
       headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
       body: JSON.stringify({
         from, to: opts.to, subject: opts.subject, text: opts.text, html: opts.html,
-        reply_to: opts.replyTo ?? SITE.email, headers: opts.headers,
+        reply_to: opts.replyTo ?? SITE.email, headers: opts.headers, attachments: opts.attachments,
       }),
     });
     if (!r.ok) console.error('sendEmail failed', r.status, await r.text());

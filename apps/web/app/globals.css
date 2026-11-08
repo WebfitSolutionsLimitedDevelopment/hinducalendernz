@@ -206,3 +206,13 @@ table.timing tr.current td { background: var(--sand); font-weight: 600; }
 
 .panchang-line{display:flex;flex-wrap:wrap;gap:2px 14px}
 .panchang-line b{font-weight:600;color:#6E1A2A}
+
+/* Agreement */
+.agreement .agr-head{display:flex;gap:16px;align-items:center;margin:8px 0 4px}
+.agreement .agr-head img{border-radius:50%}
+.agr-summary{background:#FFF8E6;border:1px solid #F0D9A8;border-radius:12px;padding:14px 18px;margin:16px 0}
+.agr-summary h2{margin-top:0}
+.agr-terms section{margin:0 0 10px}
+.agr-terms h3{margin:18px 0 6px}
+.agr-form{background:#fff;border:2px solid #6E1A2A;border-radius:14px;padding:18px;margin:24px 0}
+.agr-form h2{margin-top:0}

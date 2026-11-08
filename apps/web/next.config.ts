@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/**': ['../../data/**/*'],
     '/api/ecalendar/download': ['./private/ecalendar/**/*', './public/ecalendar/**/manifest.json'],
+    '/api/agreement/sign': ['./private/brand/**/*'],
   },
 };
 
