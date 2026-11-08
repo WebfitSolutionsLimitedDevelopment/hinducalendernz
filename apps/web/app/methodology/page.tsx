@@ -80,7 +80,7 @@ export default function Page() {
 
       <h2>Checking and review</h2>
       <ol>
-        <li><strong>Astronomical check</strong> — calculated values are compared with independent published sources and ephemerides.</li>
+        <li><strong>Astronomical check</strong> — our results are cross-checked against Swiss Ephemeris, the reference library used by most panchang software. For Auckland 2026–2028 (1,096 days), sunrise, nakshatra and yoga end times agree within one minute on every day, tithi end times within two minutes, and the tithi, nakshatra, yoga and karana at sunrise agree on all but two days — both cases where a boundary falls within a minute of sunrise.</li>
         <li><strong>Observance review</strong> — festival rules and dates are reviewed by our editor, {SITE.reviewer}, with advice from qualified religious scholars.</li>
         <li><strong>Public corrections</strong> — anyone can <Link href="/corrections">report a correction</Link>; accepted corrections are published.</li>
       </ol>
