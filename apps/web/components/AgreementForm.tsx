@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-export function AgreementForm({ token, party }: { token: string; party: string }) {
+export function AgreementForm({ token }: { token: string; party?: string }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [agree, setAgree] = useState(false);
@@ -35,13 +35,13 @@ export function AgreementForm({ token, party }: { token: string; party: string }
       } finally { setBusy(false); }
     }}>
       <h2>Sign the agreement</h2>
-      <p className="small muted">This agreement is offered to {party}. Type your full legal name as your electronic signature.</p>
+      <p className="small muted">Please type your full name as your electronic signature.</p>
       <div><label htmlFor="agr-name">Full name</label><input id="agr-name" required minLength={3} maxLength={120} value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" /></div>
       <div><label htmlFor="agr-email">Email (for your signed copy)</label><input id="agr-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" /></div>
-      <label className="check"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} /> I have read and agree to the terms and conditions of this agreement, and I agree that typing my name and submitting this form is my electronic signature.</label>
+      <label className="check"><input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} /> I have read and agree to the terms and conditions of this Agreement.</label>
       {err && <p className="form-error" role="alert">{err}</p>}
       <button className="btn btn-primary" type="submit" disabled={busy}>{busy ? 'Signing…' : 'I agree — sign and submit'}</button>
-      <p className="small muted">We record your name, email, IP address, device, and the date and time of signing.</p>
+      <p className="small muted">The signed record includes your name, email, IP address and the date and time of signing.</p>
     </form>
   );
 }

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { AGREEMENT_TITLE, AGREEMENT_VERSION, INVITES, OFFEROR, SECTIONS, SUMMARY } from '@/lib/agreement';
+import { AGREEMENT_TITLE, AGREEMENT_VERSION, INVITES, OFFEROR, SECTIONS } from '@/lib/agreement';
 import { AgreementForm } from '@/components/AgreementForm';
 
 export const dynamic = 'force-dynamic';
@@ -16,13 +16,7 @@ export default async function AgreementPage({ params }: { params: Promise<{ toke
         <img src="/brand/symbol.svg" alt="Hindu Calendar NZ" width={72} height={72} />
       </div>
       <h1>{AGREEMENT_TITLE}</h1>
-      <p className="muted small">Version {AGREEMENT_VERSION} · Offered by {OFFEROR.name} to {invite.party}</p>
-
-      <div className="agr-summary">
-        <h2>In plain English</h2>
-        <ul>{SUMMARY.map((s) => <li key={s}>{s}</li>)}</ul>
-        <p className="small muted">This summary helps you read the agreement; the numbered clauses below are the binding terms. You may wish to take independent legal advice before signing.</p>
-      </div>
+      <p className="muted small">Version {AGREEMENT_VERSION} · {OFFEROR.name} and {invite.party}</p>
 
       <div className="agr-terms">
         {SECTIONS.map((s) => (

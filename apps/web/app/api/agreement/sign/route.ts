@@ -5,7 +5,7 @@ import { createHash, randomBytes } from 'node:crypto';
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from 'pdf-lib';
 import { adminDb, rateLimitOk, isEmail } from '@/lib/supabase-server';
 import { sendEmail, html } from '@/lib/notify';
-import { AGREEMENT_TITLE, AGREEMENT_VERSION, INVITES, OFFEROR, SECTIONS, SUMMARY, agreementText } from '@/lib/agreement';
+import { AGREEMENT_TITLE, AGREEMENT_VERSION, INVITES, OFFEROR, SECTIONS, agreementText } from '@/lib/agreement';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
@@ -59,11 +59,7 @@ async function buildPdf(rec: Record<string, string>) {
   page.drawText(pdfSafe(`Agreement ID ${rec.agreementId}`), { x: M + 86, y: y - 58, size: 10, font: reg, color: grey });
   y -= 92;
   para(AGREEMENT_TITLE, 15, bold, maroon, 4);
-  para(`Version ${AGREEMENT_VERSION} · Between ${OFFEROR.name} (${OFFEROR.desc}) and ${rec.name}`, 9.5, reg, grey, 10);
-  // Summary box
-  para('Summary (for convenience — the clauses below govern)', 11, bold, maroon, 3);
-  for (const s of SUMMARY) para(`•  ${s}`, 9.5, reg, rgb(0.2, 0.15, 0.12), 2);
-  y -= 8;
+  para(`Version ${AGREEMENT_VERSION} · Between ${OFFEROR.name} and ${rec.name}`, 9.5, reg, grey, 10);
   for (const s of SECTIONS) { need(40); para(s.h, 11.5, bold, maroon, 3); for (const p of s.p) para(p, 9.8); }
   // Execution
   need(260); y -= 6;
@@ -72,8 +68,8 @@ async function buildPdf(rec: Record<string, string>) {
   para(`Signed electronically by the Co-founder:`, 10, bold);
   page.drawText(pdfSafe(rec.name), { x: M + 10, y: y - 26, size: 26, font: ital, color: navy }); y -= 34;
   page.drawLine({ start: { x: M, y }, end: { x: M + 300, y }, thickness: 0.6, color: grey }); y -= 14;
-  para(`${rec.name} — ${INVITES[rec.token]?.role ?? 'Co-founder'}`, 9.5, reg, grey, 10);
-  para(`Offered and accepted for ${OFFEROR.name} by ${OFFEROR.signatory}.`, 10, bold, rgb(0.13, 0.08, 0.06), 12);
+  para(`${rec.name}, Co-founder`, 9.5, reg, grey, 10);
+  para(`Signed for ${OFFEROR.name} by ${OFFEROR.signatory}.`, 10, bold, rgb(0.13, 0.08, 0.06), 12);
   // Audit trail
   para('Signature record', 11.5, bold, maroon, 4);
   const rows: [string, string][] = [
@@ -128,9 +124,9 @@ export async function POST(req: Request) {
   const filename = `${rec.agreementId}.pdf`;
   const lines = [
     `Namaste ${name},`,
-    `Thank you for signing the ${AGREEMENT_TITLE}. Your signed copy is attached.`,
+    `Thank you for signing the ${AGREEMENT_TITLE}. A copy of the signed agreement is attached.`,
     `Agreement ID: ${rec.agreementId}\nSigned: ${rec.signedNz}\nIP address: ${rec.ip}`,
-    `${OFFEROR.name} confirms its acceptance of the agreement. Please keep this email and the attached PDF for your records.`,
+    `Please keep this email and the attached PDF for your records.`,
     `Warm regards,\n${OFFEROR.signatory}`,
   ];
   const footer = `${OFFEROR.name} · ${OFFEROR.email} · ${OFFEROR.web}`;
