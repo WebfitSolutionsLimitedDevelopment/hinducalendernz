@@ -207,6 +207,11 @@ export function calculateFestivals(year: number, loc: Location, rules: FestivalR
         const timing: Record<string, string | null> = {
           tithiStart: localISO(iv.start, loc), tithiEnd: localISO(iv.end, loc),
         };
+        if (r.id === 'krishna-janmashtami') {
+          // Vaishnava / ISKCON practice: avoid Saptami-viddha — keep the day Ashtami is current at sunrise (udaya).
+          const v = candidateDates(iv, loc).find((d) => { const sr = solarDay(d, loc).sunrise; return sr >= iv.start && sr < iv.end; });
+          if (v && v !== date) { timing.vaishnavaDate = v; flags.push(`VAISHNAVA: Ashtami at sunrise on ${v} (ISKCON-style date; Rohini not considered)`); }
+        }
         if (r.kala === 'moonrise') timing.moonrise = localISO(solarDay(date, loc).moonrise, loc);
         else if (w && w.start.getTime() !== w.end.getTime()) {
           timing.windowStart = localISO(new Date(Math.max(w.start.getTime(), iv.start.getTime())), loc);

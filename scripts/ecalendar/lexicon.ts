@@ -42,7 +42,7 @@ export const FESTIVAL_HI: Record<string, string> = {
   'sharad-navratri': 'शारदीय नवरात्र आरंभ', 'durga-ashtami': 'दुर्गा अष्टमी', 'maha-navami': 'महानवमी',
   dussehra: 'दशहरा (विजयादशमी)', 'sharad-purnima': 'शरद पूर्णिमा', 'karva-chauth': 'करवा चौथ',
   dhanteras: 'धनतेरस', diwali: 'दीपावली (लक्ष्मी पूजा)', 'naraka-chaturdashi': 'नरक चतुर्दशी',
-  'govardhan-puja': 'गोवर्धन पूजा', 'bhai-dooj': 'भाई दूज', 'chhath-puja': 'छठ पूजा',
+  'govardhan-puja': 'गोवर्धन पूजा', 'bhai-dooj': 'भाई दूज', 'chhath-puja': 'छठ पूजा (संध्या अर्घ्य)',
   'kartika-purnima': 'कार्तिक पूर्णिमा', bhogi: 'भोगी', lohri: 'लोहड़ी', 'makar-sankranti': 'मकर संक्रांति',
   thaipusam: 'थाईपूसम', 'sakat-chauth': 'सकट चौथ', 'vasant-panchami': 'वसंत पंचमी', 'ratha-saptami': 'रथ सप्तमी',
   'maha-shivaratri': 'महाशिवरात्रि', 'holika-dahan': 'होलिका दहन', holi: 'होली', ugadi: 'उगादि / गुड़ी पड़वा',
@@ -52,7 +52,7 @@ export const FESTIVAL_HI: Record<string, string> = {
   onam: 'ओणम', 'anant-chaturdashi': 'अनंत चतुर्दशी', 'chaitra-navratri': 'चैत्र नवरात्र आरंभ',
   'vat-savitri': 'वट सावित्री', 'hartalika-teej': 'हरतालिका तीज', 'hariyali-teej': 'हरियाली तीज',
   'sankashti-chaturthi': 'संकष्टी चतुर्थी',
-  'yamuna-chhath': 'यमुना छठ', 'ganga-saptami': 'गंगा सप्तमी', 'sita-navami': 'सीता नवमी', 'narada-jayanti': 'नारद जयंती', 'kajari-teej': 'कजरी तीज',
+  'yamuna-chhath': 'यमुना छठ', 'ganga-saptami': 'गंगा सप्तमी', 'sita-navami': 'सीता नवमी', 'narada-jayanti': 'नारद जयंती', 'kajari-teej': 'कजरी तीज', 'chhath-usha-arghya': 'छठ (उषा अर्घ्य)',
 };
 
 export const EKADASHI_HI: Record<string, string> = {

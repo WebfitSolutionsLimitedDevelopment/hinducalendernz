@@ -82,7 +82,7 @@ const G: Record<string, Guidance> = {
   'krishna-janmashtami': {
     about: 'Krishna Janmashtami celebrates the birth of Lord Krishna on the eighth day (Ashtami) of the waning moon, traditionally at midnight.',
     observe: 'Devotees fast through the day, sing bhajans, decorate a cradle for baby Krishna and celebrate at midnight before breaking the fast. Dahi Handi is held in Maharashtra the following day.',
-    timing: 'The key time is the midnight period (Nishita) while Ashtami is current. ISKCON and some Vaishnava communities may observe on a different day.',
+    timing: 'The date shown follows the Smarta rule — Ashtami current at midnight (Nishita). Where ISKCON and Vaishnava communities fast on the next day (Ashtami at sunrise), that date is shown as the Vaishnava date. Follow your temple’s announcement.',
   },
   'ganesh-chaturthi': {
     about: 'Ganesh Chaturthi celebrates the birth of Lord Ganesha, remover of obstacles and patron of new beginnings.',
@@ -147,6 +147,35 @@ const G: Record<string, Guidance> = {
     about: 'Bhai Dooj (Bhau Beej) celebrates the bond between brothers and sisters and closes the Diwali festival.',
     observe: 'Sisters perform aarti and apply a tilak to their brothers and pray for their long life; brothers give gifts in return.',
     timing: 'The tilak ceremony is traditionally done in the afternoon (aparahna).',
+  },
+  'chhath-usha-arghya': {
+    about: 'The fourth and final day of Chhath Puja, when devotees offer arghya to the rising Sun (Usha Arghya) and complete their fast.',
+    observe: 'Before dawn, families return to the water’s edge with the soop (bamboo winnowing basket) of thekua, fruit and sugarcane, offer water and milk to the rising Sun, then break the 36-hour fast with prasad (parana).',
+    timing: 'The offering is made at your city’s sunrise on this date.',
+  },
+  'yamuna-chhath': {
+    about: 'Yamuna Chhath (Yamuna Jayanti) marks the descent of Goddess Yamuna to earth, celebrated on Chaitra Shukla Shashthi during Chaitra Navratri.',
+    observe: 'Devotees worship Yamuna Maiya, offer flowers and lamps, and those near the river bathe in it. In Mathura and Vrindavan the day is celebrated with special aarti; at home, families offer prayers and give to those in need.',
+  },
+  'ganga-saptami': {
+    about: 'Ganga Saptami (Ganga Jayanti) celebrates the rebirth of the River Ganga, when she emerged from the ear of Sage Jahnu, on Vaishakha Shukla Saptami.',
+    observe: 'Devotees worship Ganga Maa, offer flowers, lamps and Ganga jal, and take a holy dip where possible. At home a little Ganga jal is added to bathing water and a short puja is performed at midday.',
+    timing: 'The puja is performed at midday (madhyahna) while Saptami is current.',
+  },
+  'sita-navami': {
+    about: 'Sita Navami (Janaki Jayanti) celebrates the appearance of Goddess Sita, found by King Janaka while ploughing the field, on Vaishakha Shukla Navami.',
+    observe: 'Married women fast for the wellbeing of their husbands and families, and Sita and Rama are worshipped together with flowers, sindoor and naivedya. The Ramayana or Sita stuti is read.',
+    timing: 'The puja is performed at midday (madhyahna) while Navami is current, as Sita is believed to have appeared at midday.',
+  },
+  'narada-jayanti': {
+    about: 'Narada Jayanti honours Devarishi Narada, the celestial sage and messenger of the gods, devotee of Lord Vishnu and patron of music and communication.',
+    observe: 'Devotees worship Narada Muni and Lord Vishnu, chant “Narayana, Narayana”, sing bhajans and offer food and clothing to Brahmins and those in need. Musicians and journalists in India often mark the day.',
+    timing: 'Observed on Jyeshtha Krishna Pratipada (purnimanta) — the day after Vaishakha Purnima — while Pratipada is current at sunrise.',
+  },
+  'kajari-teej': {
+    about: 'Kajari Teej (Badi Teej, Satudi Teej) is a monsoon festival observed by married women in Uttar Pradesh, Bihar, Rajasthan and Madhya Pradesh for marital happiness, on Bhadrapada Krishna Tritiya.',
+    observe: 'Women keep a day-long fast, worship Neemdi Mata and Goddess Parvati, sing Kajari folk songs and swing on decorated jhoolas. Sattu sweets are prepared, and the fast is broken after offering arghya to the moon.',
+    timing: 'The date shown is when Tritiya is current at sunrise. Many families break the fast at moonrise — follow your family custom.',
   },
   'chhath-puja': {
     about: 'Chhath Puja is dedicated to Surya and Chhathi Maiya and is observed especially by families from Bihar, Jharkhand and eastern Uttar Pradesh.',

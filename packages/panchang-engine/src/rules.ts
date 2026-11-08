@@ -46,6 +46,7 @@ export const DEFAULT_RULES: FestivalRule[] = [
   { kind: 'tithi', id: 'ratha-saptami', name: 'Ratha Saptami', tradition: 'Pan-Hindu / South Indian', masa: 10, paksha: 'Shukla', tithi: 7, kala: 'sunrise' },
   { kind: 'tithi', id: 'maha-shivaratri', name: 'Maha Shivaratri', tradition: 'Pan-Hindu', masa: 10, paksha: 'Krishna', tithi: 14, kala: 'nishita' },
   { kind: 'tithi', id: 'holika-dahan', name: 'Holika Dahan', tradition: 'North Indian', masa: 11, paksha: 'Shukla', tithi: 15, kala: 'pradosh' },
+  { kind: 'relative', id: 'chhath-usha-arghya', name: 'Chhath Puja (morning arghya)', altNames: ['Usha Arghya', 'Parana'], tradition: 'Bihari / Purvanchali', of: 'chhath-puja', days: 1 },
   { kind: 'relative', id: 'holi', name: 'Holi', altNames: ['Rangwali Holi', 'Dhulandi'], tradition: 'Pan-Hindu', of: 'holika-dahan', days: 1 },
   // Solar
   { kind: 'sankranti', id: 'makar-sankranti', name: 'Makar Sankranti', altNames: ['Pongal', 'Uttarayan', 'Maghi'], tradition: 'Pan-Hindu / Tamil / Gujarati / Punjabi', rashi: 9 },
