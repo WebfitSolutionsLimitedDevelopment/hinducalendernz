@@ -16,7 +16,7 @@ import { tmpdir } from 'node:os';
 import QRCode from 'qrcode';
 import { chromium } from 'playwright';
 import {
-  tithiHi, pakshaHi, pakshaShort, NAKSHATRA_HI, MASA_HI, RASHI, RASHI_HI, RASHI_EN, RASHI_GLYPH,
+  tithiHi, pakshaHi, pakshaShort, NAKSHATRA_HI, YOGA_HI, MASA_HI, RASHI, RASHI_HI, RASHI_EN, RASHI_GLYPH,
   MONTH_HI, MONTH_EN, WEEK_HI, WEEK_EN, WEEK_COLOURS, festivalHi, SUN_GOCHAR, DEITY, MONTH_DEITY,
 } from './lexicon';
 import { guidanceFor } from '../../apps/web/lib/guidance';
@@ -37,7 +37,7 @@ const CITY_NAME: Record<string, string> = { auckland: 'Auckland', hamilton: 'Ham
 const CITY_HI: Record<string, string> = { auckland: 'ऑकलैंड', hamilton: 'हैमिल्टन', tauranga: 'टौरंगा', wellington: 'वेलिंगटन', 'palmerston-north': 'पामर्स्टन नॉर्थ', christchurch: 'क्राइस्टचर्च', dunedin: 'ड्यूनेडिन' };
 
 // ---------- data ----------
-type Day = { date: string; sunrise: string; sunset: string; moonrise: string | null; tithi: { number: number; paksha: string; name: string; endsAt: string }; kshayaTithi: { number: number; paksha: string } | null; nakshatra: { number: number; name: string; endsAt: string }; masa: { amanta: string; purnimanta: string; adhika: boolean }; sunRashi: string };
+type Day = { yoga?: { number: number; name: string; endsAt: string }; karana?: { name: string; endsAt: string }; date: string; sunrise: string; sunset: string; moonrise: string | null; tithi: { number: number; paksha: string; name: string; endsAt: string }; kshayaTithi: { number: number; paksha: string } | null; nakshatra: { number: number; name: string; endsAt: string }; masa: { amanta: string; purnimanta: string; adhika: boolean }; sunRashi: string };
 type Fest = { id: string; name: string; date: string; category: string; timing: Record<string, string | null>; tradition: string };
 type Hol = { date: string; name: string; kind: string };
 const read = (p: string) => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
@@ -74,7 +74,7 @@ function tHi(d: Date) {
   return `ता.${day} ${part} ${(h % 12) || 12}:${mi}`;
 }
 const spanHi = (s: Span) => `${tHi(s.start)} से ${tHi(s.end).replace(/^ता\.\d+ /, (x) => (localISO(s.start, LOC)!.slice(8, 10) === localISO(s.end, LOC)!.slice(8, 10) ? '' : x))} तक`;
-const YOGA_HI: Record<string, string> = { sarvartha: 'सर्वार्थ सिद्धि', amrit: 'अमृत सिद्धि', ravi: 'रवि योग', dwipushkar: 'द्विपुष्कर', tripushkar: 'त्रिपुष्कर' };
+const SPECIAL_YOGA_HI: Record<string, string> = { sarvartha: 'सर्वार्थ सिद्धि', amrit: 'अमृत सिद्धि', ravi: 'रवि योग', dwipushkar: 'द्विपुष्कर', tripushkar: 'त्रिपुष्कर' };
 const SUN_NAK_HI = NAKSHATRA_HI;
 
 function vichar(y: number, m: number) {
@@ -361,7 +361,7 @@ function infoPanels(v: Vichar) {
   if (v.mool.length) out.push(box('मूल विचार', v.mool.map((x) => `${spanHi(x)} <i>(${nk(x.first)}${x.last !== x.first ? '–' + nk(x.last) : ''})</i>`).join('<br>')));
   if (v.pan.length) out.push(box('पंचक विचार', v.pan.map(spanHi).join('<br>')));
   if (v.sun.length) out.push(box('सूर्य नक्षत्र', v.sun.map((x) => `${tHi(x.start)} से ${nk(x.nakshatra)}`).join('<br>')));
-  const yl = (['sarvartha', 'amrit', 'dwipushkar', 'tripushkar'] as const).filter((k) => v.yd[k]?.length).map((k) => `<b>${YOGA_HI[k]}:</b> ${v.yd[k].join(', ')}`);
+  const yl = (['sarvartha', 'amrit', 'dwipushkar', 'tripushkar'] as const).filter((k) => v.yd[k]?.length).map((k) => `<b>${SPECIAL_YOGA_HI[k]}:</b> ${v.yd[k].join(', ')}`);
   if (yl.length) out.push(box('शुभ योग (तारीख)', yl.join('<br>')));
   if (v.vivah.length) out.push(box('विवाह मुहूर्त', `ता. ${v.vivah.join(', ')}`));
   return out;
@@ -387,11 +387,11 @@ function grid(y: number, m: number, md: Day[], mf: Fest[], mh: Hol[], v: Vichar)
       const tnum = t.number > 15 ? t.number - 15 : t.number;
       const k = day.kshayaTithi ? `/${day.kshayaTithi.number > 15 ? day.kshayaTithi.number - 15 : day.kshayaTithi.number}` : '';
       const bh = v.bh.some((x) => localISO(x.start, LOC)!.startsWith(iso) || localISO(x.end, LOC)!.startsWith(iso));
-      const cls = ['c', r === 0 && 'sun', hs.some((h) => h.kind === 'public') && 'hol', fs.length && 'fest fit'].filter(Boolean).join(' ');
+      const cls = ['c', 'fit', r === 0 && 'sun', hs.some((h) => h.kind === 'public') && 'hol', fs.length && 'fest'].filter(Boolean).join(' ');
       cells.push(`<div class="${cls}" style="${at(r, c)}">
         <div class="n">${d}</div>
         <div class="tn hi"><b style="color:${t.paksha === 'Shukla' ? '#B3122E' : '#3A3A3A'}">${pakshaShort(t.paksha)} ${t.paksha === 'Krishna' && tnum === 15 ? 30 : tnum}${k}</b>${bh ? '<span class="bd">भद्रा</span>' : ''}</div>
-        <div class="ti hi">${tithiHi(t.number, t.paksha)} ${hhmm(t.endsAt)}<br>${NAKSHATRA_HI[day.nakshatra.number - 1]} ${hhmm(day.nakshatra.endsAt)}</div>
+        <div class="ti hi">${tithiHi(t.number, t.paksha)} ${hhmm(t.endsAt)}<br>${NAKSHATRA_HI[day.nakshatra.number - 1]} ${hhmm(day.nakshatra.endsAt)}${day.yoga ? `<br>यो. ${YOGA_HI[day.yoga.number - 1]}` : ''}</div>
         ${fs.slice(0, 2).map((f) => `<div class="fe hi">${short(festivalHi(f).replace(/ \(.*\)/, ''), 24)}</div>`).join('')}
         ${hs.slice(0, 1).map((h) => `<div class="ho">${short(h.name, 26)}</div>`).join('')}
         ${mp[d] ? `<div class="mp">${mp[d]}</div>` : ''}

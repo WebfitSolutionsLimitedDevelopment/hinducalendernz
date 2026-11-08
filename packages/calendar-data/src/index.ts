@@ -13,6 +13,9 @@ export interface DayRecord {
   tithi: { number: number; paksha: 'Shukla' | 'Krishna'; name: string; endsAt: string | null };
   kshayaTithi: DayRecord['tithi'] | null;
   nakshatra: { number: number; name: string; endsAt: string | null };
+  yoga?: { number: number; name: string; endsAt: string | null };
+  karana?: { name: string; endsAt: string | null };
+  vaara?: string;
   masa: { amanta: string; purnimanta: string; adhika: boolean };
   sunRashi: string;
 }

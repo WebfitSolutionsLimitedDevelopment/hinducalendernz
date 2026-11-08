@@ -3,7 +3,7 @@ import {
   Location, addDays, addMinutes, elongation, moonSidereal, sunSidereal,
   searchAngle, riseSet, newMoons,
 } from './astro.ts';
-import { MASA_NAMES, NAKSHATRA_NAMES, RASHI_NAMES, tithiName, type Paksha } from './constants.ts';
+import { MASA_NAMES, NAKSHATRA_NAMES, RASHI_NAMES, YOGA_NAMES, karanaName, tithiName, type Paksha } from './constants.ts';
 
 export interface Lunation {
   start: Date;        // new moon that begins the month (amanta)
@@ -39,6 +39,10 @@ export function tithiInterval(l: Lunation, n: number): { start: Date; end: Date 
 
 export const tithiAt = (t: Date) => Math.floor(elongation(t) / 12) + 1; // 1..30
 export const nakshatraAt = (t: Date) => Math.floor(moonSidereal(t) / (360 / 27)) + 1; // 1..27
+/** Sum of the sidereal longitudes of Sun and Moon, 0..360°. Yoga = floor(sum / 13°20'). */
+export const yogaAngle = (t: Date) => (sunSidereal(t) + moonSidereal(t)) % 360;
+export const yogaAt = (t: Date) => Math.floor(yogaAngle(t) / (360 / 27)) + 1; // 1..27
+export const karanaAt = (t: Date) => Math.floor(elongation(t) / 6); // 0..59
 
 // ---------- civil days ----------
 
@@ -99,6 +103,12 @@ export interface DailyPanchang {
   /** A second tithi that begins and ends between this sunrise and the next (kshaya). */
   kshayaTithi: { number: number; paksha: Paksha; name: string; endsAt: string | null } | null;
   nakshatra: { number: number; name: string; endsAt: string | null };
+  /** Nitya yoga at sunrise and when it ends. */
+  yoga: { number: number; name: string; endsAt: string | null };
+  /** Karana (half-tithi) at sunrise and when it ends. */
+  karana: { name: string; endsAt: string | null };
+  /** Weekday (vaara), reckoned from local sunrise. */
+  vaara: string;
   masa: { amanta: string; purnimanta: string; adhika: boolean };
   sunRashi: string;
 }
@@ -120,6 +130,10 @@ export function dailyPanchang(isoDate: string, loc: Location, lunas: Lunation[])
   }
   const nk = nakshatraAt(sr);
   const nkEnd = searchAngle(moonSidereal, (nk * (360 / 27)) % 360, sr, 3);
+  const yg = yogaAt(sr);
+  const ygEnd = searchAngle(yogaAngle, (yg * (360 / 27)) % 360, sr, 3);
+  const kr = karanaAt(sr);
+  const krEnd = searchAngle(elongation, ((kr + 1) * 6) % 360, sr, 2);
   const l = lunationAt(lunas, sr);
   const purn = t.paksha === 'Krishna' ? (l.masa + 1) % 12 : l.masa;
   return {
@@ -130,6 +144,9 @@ export function dailyPanchang(isoDate: string, loc: Location, lunas: Lunation[])
     tithi: { number: t.number, paksha: t.paksha, name: t.name, endsAt: localISO(tEnd, loc) },
     kshayaTithi: kshaya,
     nakshatra: { number: nk, name: NAKSHATRA_NAMES[nk - 1], endsAt: localISO(nkEnd, loc) },
+    yoga: { number: yg, name: YOGA_NAMES[yg - 1], endsAt: localISO(ygEnd, loc) },
+    karana: { name: karanaName(kr), endsAt: localISO(krEnd, loc) },
+    vaara: ['Ravivara', 'Somavara', 'Mangalavara', 'Budhavara', 'Guruvara', 'Shukravara', 'Shanivara'][new Date(isoDate + 'T12:00:00Z').getUTCDay()],
     masa: { amanta: MASA_NAMES[l.masa], purnimanta: MASA_NAMES[purn], adhika: l.adhika },
     sunRashi: RASHI_NAMES[Math.floor(sunSidereal(sr) / 30)],
   };

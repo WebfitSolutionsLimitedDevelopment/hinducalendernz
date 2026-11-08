@@ -27,6 +27,20 @@ export const NAKSHATRA_NAMES = [
   'Purva Bhadrapada', 'Uttara Bhadrapada', 'Revati',
 ] as const;
 
+/** The 27 nitya yogas (Sun + Moon sidereal longitude, 13°20' each), index 0 = Vishkambha. */
+export const YOGA_NAMES = [
+  'Vishkambha', 'Priti', 'Ayushman', 'Saubhagya', 'Shobhana', 'Atiganda', 'Sukarma', 'Dhriti', 'Shula',
+  'Ganda', 'Vriddhi', 'Dhruva', 'Vyaghata', 'Harshana', 'Vajra', 'Siddhi', 'Vyatipata', 'Variyan',
+  'Parigha', 'Shiva', 'Siddha', 'Sadhya', 'Shubha', 'Shukla', 'Brahma', 'Indra', 'Vaidhriti',
+] as const;
+
+/** Karana for a half-tithi index 0..59 within the lunar month (0 = first half of Shukla Pratipada). */
+export function karanaName(i: number): string {
+  if (i === 0) return 'Kimstughna';
+  if (i >= 57) return ['Shakuni', 'Chatushpada', 'Naga'][i - 57];
+  return ['Bava', 'Balava', 'Kaulava', 'Taitila', 'Garaja', 'Vanija', 'Vishti'][(i - 1) % 7];
+}
+
 export const MOON_QUARTER_NAMES = ['New Moon', 'First Quarter', 'Full Moon', 'Last Quarter'] as const;
 
 export type Paksha = 'Shukla' | 'Krishna';

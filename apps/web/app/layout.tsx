@@ -72,6 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <nav aria-label="Footer" className="footer-links">
               <Link href="/how-hindu-dates-work">How dates work</Link>
+              <Link href="/methodology">Methodology</Link>
               <Link href="/how-to-use">How to use</Link>
               <Link href="/corrections">Corrections</Link>
               <Link href="/sponsors">Sponsors</Link>

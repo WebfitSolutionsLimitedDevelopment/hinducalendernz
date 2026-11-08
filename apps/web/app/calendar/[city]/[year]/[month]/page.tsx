@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   CITIES, YEARS, isCity, isYear, cityLabel, showCalculated,
-  getDays, getFestivals, getHolidays, getMoonPhases, monthName, fmtTime, fmtDate,
+  getDays, getFestivals, getHolidays, getMoonPhases, monthName, fmtTime, fmtTimeOn, fmtDate,
 } from '@/lib/data';
 import { CityPicker } from '@/components/CityPicker';
 
@@ -77,7 +77,15 @@ export default async function MonthPage({ params }: P) {
         {rows.filter((r) => r.fest.length || r.hol.length || r.moon.length || showCalculated).map(({ d, fest, hol, school, moon }) => (
           <div key={d.date} className={`day ${hol.length ? 'holiday' : school ? 'school' : ''}`}>
             <div className="d">{fmtDate(d.date, { weekday: true })}</div>
-            {showCalculated && <div className="tithi small">{d.tithi.paksha} {d.tithi.name} · sunrise {fmtTime(d.sunrise)} · sunset {fmtTime(d.sunset)}</div>}
+            {showCalculated && (
+              <div className="tithi small panchang-line">
+                <span><b>Tithi</b> {d.tithi.paksha} {d.tithi.name}{d.tithi.endsAt ? ` until ${fmtTimeOn(d.tithi.endsAt, d.date)}` : ''}</span>
+                <span><b>Nakshatra</b> {d.nakshatra.name}{d.nakshatra.endsAt ? ` until ${fmtTimeOn(d.nakshatra.endsAt, d.date)}` : ''}</span>
+                {d.yoga && <span><b>Yoga</b> {d.yoga.name}{d.yoga.endsAt ? ` until ${fmtTimeOn(d.yoga.endsAt, d.date)}` : ''}</span>}
+                {d.karana && <span><b>Karana</b> {d.karana.name}{d.karana.endsAt ? ` until ${fmtTimeOn(d.karana.endsAt, d.date)}` : ''}</span>}
+                <span><b>Sunrise</b> {fmtTime(d.sunrise)} · <b>Sunset</b> {fmtTime(d.sunset)}</span>
+              </div>
+            )}
             {hol.map((h) => <div key={h.name} className="hol">{h.name}</div>)}
             {fest.map((f) => <div key={f.id}><Link href={`/festivals/${city}/${year}/${f.slug}`}>{f.name}</Link></div>)}
             {moon.map((p) => <div key={p.time} className="muted small">{p.phase} {fmtTime(p.time)}</div>)}

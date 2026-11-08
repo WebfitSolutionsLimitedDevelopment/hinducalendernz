@@ -203,3 +203,6 @@ table.timing tr.current td { background: var(--sand); font-weight: 600; }
 .dl-grid p{margin:0}
 .dl-grid select{font:inherit;padding:8px 10px;border-radius:8px;border:1px solid #D9C7A6;background:#fff}
 .dl-grid .btn{margin-top:auto}
+
+.panchang-line{display:flex;flex-wrap:wrap;gap:2px 14px}
+.panchang-line b{font-weight:600;color:#6E1A2A}

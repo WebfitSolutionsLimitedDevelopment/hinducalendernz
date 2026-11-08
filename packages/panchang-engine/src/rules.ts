@@ -7,15 +7,20 @@ import type { FestivalRule } from './festivals.ts';
 export const DEFAULT_RULES: FestivalRule[] = [
   // Chaitra
   { kind: 'tithi', id: 'ugadi', name: 'Ugadi / Gudi Padwa', altNames: ['Hindu New Year', 'Chaitra Navratri begins', 'Cheti Chand (regional)'], tradition: 'Pan-Hindu / Telugu / Kannada / Marathi', masa: 0, paksha: 'Shukla', tithi: 1, kala: 'sunrise' },
+  { kind: 'tithi', id: 'yamuna-chhath', name: 'Yamuna Chhath', altNames: ['Yamuna Jayanti'], tradition: 'North Indian', masa: 0, paksha: 'Shukla', tithi: 6, kala: 'sunrise' },
   { kind: 'tithi', id: 'ram-navami', name: 'Ram Navami', altNames: ['Rama Navami'], tradition: 'Pan-Hindu', masa: 0, paksha: 'Shukla', tithi: 9, kala: 'madhyahna' },
   { kind: 'tithi', id: 'hanuman-jayanti', name: 'Hanuman Jayanti', tradition: 'North Indian (dates differ in South India)', masa: 0, paksha: 'Shukla', tithi: 15, kala: 'sunrise' },
   // Vaishakha
+  { kind: 'tithi', id: 'ganga-saptami', name: 'Ganga Saptami', altNames: ['Ganga Jayanti'], tradition: 'North Indian', masa: 1, paksha: 'Shukla', tithi: 7, kala: 'madhyahna' },
+  { kind: 'tithi', id: 'sita-navami', name: 'Sita Navami', altNames: ['Janaki Navami'], tradition: 'North Indian', masa: 1, paksha: 'Shukla', tithi: 9, kala: 'madhyahna' },
+  { kind: 'tithi', id: 'narada-jayanti', name: 'Narada Jayanti', tradition: 'North Indian (Jyeshtha Krishna Pratipada, purnimanta)', masa: 1, paksha: 'Krishna', tithi: 1, kala: 'sunrise' },
   { kind: 'tithi', id: 'akshaya-tritiya', name: 'Akshaya Tritiya', tradition: 'Pan-Hindu', masa: 1, paksha: 'Shukla', tithi: 3, kala: 'sunrise' },
   // Ashadha
   { kind: 'tithi', id: 'guru-purnima', name: 'Guru Purnima', tradition: 'Pan-Hindu', masa: 3, paksha: 'Shukla', tithi: 15, kala: 'sunrise' },
   // Shravana
   { kind: 'tithi', id: 'nag-panchami', name: 'Nag Panchami', tradition: 'Pan-Hindu', masa: 4, paksha: 'Shukla', tithi: 5, kala: 'sunrise' },
   { kind: 'tithi', id: 'raksha-bandhan', name: 'Raksha Bandhan', tradition: 'North Indian', masa: 4, paksha: 'Shukla', tithi: 15, kala: 'aparahna' },
+  { kind: 'tithi', id: 'kajari-teej', name: 'Kajari Teej', altNames: ['Badi Teej', 'Satudi Teej'], tradition: 'North Indian (Bhadrapada Krishna Tritiya, purnimanta)', masa: 4, paksha: 'Krishna', tithi: 3, kala: 'sunrise' },
   { kind: 'tithi', id: 'krishna-janmashtami', name: 'Krishna Janmashtami', altNames: ['Gokulashtami'], tradition: 'Smarta (Vaishnava date may differ)', masa: 4, paksha: 'Krishna', tithi: 8, kala: 'nishita' },
   // Bhadrapada
   { kind: 'tithi', id: 'ganesh-chaturthi', name: 'Ganesh Chaturthi', altNames: ['Vinayaka Chaturthi'], tradition: 'Pan-Hindu', masa: 5, paksha: 'Shukla', tithi: 4, kala: 'madhyahna' },

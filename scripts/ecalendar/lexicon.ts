@@ -15,6 +15,11 @@ export const NAKSHATRA_HI = [
   'मूल', 'पू. षाढ़ा', 'उ. षाढ़ा', 'श्रवण', 'धनिष्ठा', 'शतभिषा', 'पू. भाद्रपद', 'उ. भाद्रपद', 'रेवती',
 ];
 
+export const YOGA_HI = [
+  'विष्कम्भ', 'प्रीति', 'आयुष्मान', 'सौभाग्य', 'शोभन', 'अतिगण्ड', 'सुकर्मा', 'धृति', 'शूल', 'गण्ड', 'वृद्धि', 'ध्रुव', 'व्याघात', 'हर्षण',
+  'वज्र', 'सिद्धि', 'व्यतीपात', 'वरीयान', 'परिघ', 'शिव', 'सिद्ध', 'साध्य', 'शुभ', 'शुक्ल', 'ब्रह्म', 'ऐन्द्र', 'वैधृति',
+];
+
 export const MASA_HI: Record<string, string> = {
   Chaitra: 'चैत्र', Vaishakha: 'वैशाख', Jyeshtha: 'ज्येष्ठ', Ashadha: 'आषाढ़', Shravana: 'श्रावण',
   Bhadrapada: 'भाद्रपद', Ashwin: 'आश्विन', Kartika: 'कार्तिक', Margashirsha: 'मार्गशीर्ष',
@@ -47,6 +52,7 @@ export const FESTIVAL_HI: Record<string, string> = {
   onam: 'ओणम', 'anant-chaturdashi': 'अनंत चतुर्दशी', 'chaitra-navratri': 'चैत्र नवरात्र आरंभ',
   'vat-savitri': 'वट सावित्री', 'hartalika-teej': 'हरतालिका तीज', 'hariyali-teej': 'हरियाली तीज',
   'sankashti-chaturthi': 'संकष्टी चतुर्थी',
+  'yamuna-chhath': 'यमुना छठ', 'ganga-saptami': 'गंगा सप्तमी', 'sita-navami': 'सीता नवमी', 'narada-jayanti': 'नारद जयंती', 'kajari-teej': 'कजरी तीज',
 };
 
 export const EKADASHI_HI: Record<string, string> = {

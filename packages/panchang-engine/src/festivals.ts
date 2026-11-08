@@ -151,8 +151,19 @@ function ekadashi(l: Lunation, paksha: Paksha, loc: Location): FestivalResult {
   const p = solarDay(nextDate(smarta), loc);
   const day = p.sunset.getTime() - p.sunrise.getTime();
   const hariVasaraEnd = new Date(dw.start.getTime() + (dw.end.getTime() - dw.start.getTime()) / 4);
-  const pStart = new Date(Math.max(p.sunrise.getTime(), hariVasaraEnd.getTime()));
+  let pStart = new Date(Math.max(p.sunrise.getTime(), hariVasaraEnd.getTime()));
   let pEnd = new Date(Math.min(dw.end.getTime(), p.sunrise.getTime() + day / 5));
+  // If Hari Vasara leaves less than 20 minutes of pratahkala, parana moves to after madhyahna
+  // (madhyahna = third fifth of the day), still before Dwadashi ends.
+  if (pEnd.getTime() - pStart.getTime() < 20 * 60_000 && hariVasaraEnd > p.sunrise) {
+    const afterMadhyahna = new Date(p.sunrise.getTime() + (day * 3) / 5);
+    const lateEnd = new Date(Math.min(dw.end.getTime(), p.sunset.getTime()));
+    if (lateEnd.getTime() - Math.max(afterMadhyahna.getTime(), hariVasaraEnd.getTime()) >= 20 * 60_000) {
+      pStart = new Date(Math.max(afterMadhyahna.getTime(), hariVasaraEnd.getTime()));
+      pEnd = lateEnd;
+      flags.push('PARANA: Hari Vasara covers pratahkala — parana after madhyahna');
+    }
+  }
   if (pEnd <= pStart) {
     pEnd = new Date(pStart.getTime() + day / 5);
     flags.push('PARANA: Dwadashi ends before/at sunrise on parana day — window needs reviewer confirmation');
